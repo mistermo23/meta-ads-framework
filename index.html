@@ -1413,37 +1413,37 @@
 
   <div class="grid-3" style="margin-bottom: 1.5rem;">
     <div class="metric-card">
+      <div class="metric-label">Hook Rate</div>
+      <div class="metric-value">30%+</div>
+      <div class="metric-range">Below 30% = unlikely to be profitable | 40%+ = great</div>
+    </div>
+    <div class="metric-card">
       <div class="metric-label">CTR (Click-Through Rate)</div>
-      <div class="metric-value">1.5-2.2%</div>
-      <div class="metric-range">Below 1.0% = Weak | 1.0-1.5% = Average | Above 2.0% = Strong</div>
+      <div class="metric-value">2%+</div>
+      <div class="metric-range">Below 2% = mediocre | 3-4% = good creatives</div>
     </div>
     <div class="metric-card">
       <div class="metric-label">CPC (Cost Per Click)</div>
-      <div class="metric-value">$0.50-$1.15</div>
-      <div class="metric-range">Above $1.50 = Expensive | $0.70-$1.10 = Average | Below $0.50 = Excellent</div>
-    </div>
-    <div class="metric-card">
-      <div class="metric-label">CPM (Cost Per 1K Impressions)</div>
-      <div class="metric-value">$7-$14</div>
-      <div class="metric-range">Above $18 = High | $8-$13 = Normal | Below $6 = Low competition</div>
+      <div class="metric-value">~$1.00</div>
+      <div class="metric-range">Dependent on CPM + CTR | Can be higher if traffic is "hot"</div>
     </div>
   </div>
 
   <div class="grid-3" style="margin-bottom: 1.5rem;">
     <div class="metric-card">
-      <div class="metric-label">CPA (Cost Per Purchase)</div>
-      <div class="metric-value">$15-$45</div>
-      <div class="metric-range">Median ecommerce: ~$38. Must be below YOUR Break-Even CPA</div>
+      <div class="metric-label">ATC % (Add to Cart)</div>
+      <div class="metric-value">8-10%</div>
+      <div class="metric-range">Takes 2-3 ATCs to get 1 purchase</div>
     </div>
     <div class="metric-card">
-      <div class="metric-label">ROAS (Return on Ad Spend)</div>
-      <div class="metric-value">2.0-3.0x</div>
-      <div class="metric-range">Below 1.5x = Losing | 2.0-3.0x = Healthy | Above 4.0x = Excellent</div>
+      <div class="metric-label">IC % (Initiate Checkout)</div>
+      <div class="metric-value">6-8%</div>
+      <div class="metric-range">~75% of your ATC rate</div>
     </div>
     <div class="metric-card">
       <div class="metric-label">CVR (Conversion Rate)</div>
-      <div class="metric-value">1.5-3.0%</div>
-      <div class="metric-range">Below 1% = Poor | 1.5-3% = Average | Above 5% = Very strong</div>
+      <div class="metric-value">2-4%</div>
+      <div class="metric-range">Higher ticket = lower CVR | Influenced by everything before it</div>
     </div>
   </div>
 
@@ -1459,17 +1459,31 @@
           <th style="color: #1877F2;">Excellent</th>
         </tr>
         <tr>
+          <td><strong>Hook Rate</strong></td>
+          <td>&lt; 20%</td>
+          <td>20% - 29%</td>
+          <td>30% - 40%</td>
+          <td>&gt; 40%</td>
+        </tr>
+        <tr>
+          <td><strong>Hold Rate</strong></td>
+          <td>&lt; 8%</td>
+          <td>8% - 15%</td>
+          <td>15% - 25%</td>
+          <td>&gt; 30%</td>
+        </tr>
+        <tr>
           <td><strong>CTR</strong></td>
-          <td>&lt; 0.8%</td>
-          <td>0.8% - 1.4%</td>
-          <td>1.5% - 2.2%</td>
-          <td>&gt; 2.5%</td>
+          <td>&lt; 1%</td>
+          <td>1% - 1.9%</td>
+          <td>2% - 3%</td>
+          <td>3% - 4%+</td>
         </tr>
         <tr>
           <td><strong>CPC</strong></td>
           <td>&gt; $2.00</td>
           <td>$1.00 - $2.00</td>
-          <td>$0.50 - $1.00</td>
+          <td>~$1.00</td>
           <td>&lt; $0.50</td>
         </tr>
         <tr>
@@ -1480,18 +1494,18 @@
           <td>&lt; $7</td>
         </tr>
         <tr>
-          <td><strong>ROAS</strong></td>
-          <td>&lt; 1.5x</td>
-          <td>1.5x - 2.5x</td>
-          <td>2.5x - 4.0x</td>
-          <td>&gt; 4.0x</td>
+          <td><strong>ATC %</strong></td>
+          <td>&lt; 5%</td>
+          <td>5% - 7%</td>
+          <td>8% - 10%</td>
+          <td>&gt; 10%</td>
         </tr>
         <tr>
-          <td><strong>CPA</strong></td>
-          <td>&gt; 1.5x BE CPA</td>
-          <td>1x - 1.5x BE CPA</td>
-          <td>At or below BE CPA</td>
-          <td>&lt; 50% of BE CPA</td>
+          <td><strong>IC %</strong></td>
+          <td>&lt; 4%</td>
+          <td>4% - 5%</td>
+          <td>6% - 8%</td>
+          <td>&gt; 8%</td>
         </tr>
         <tr>
           <td><strong>CVR</strong></td>
@@ -1501,18 +1515,11 @@
           <td>&gt; 4%</td>
         </tr>
         <tr>
-          <td><strong>Hook Rate</strong></td>
-          <td>&lt; 15%</td>
-          <td>15% - 25%</td>
-          <td>30% - 40%</td>
-          <td>&gt; 45%</td>
-        </tr>
-        <tr>
-          <td><strong>Hold Rate</strong></td>
-          <td>&lt; 8%</td>
-          <td>8% - 15%</td>
-          <td>15% - 25%</td>
-          <td>&gt; 30%</td>
+          <td><strong>ROAS</strong></td>
+          <td>&lt; BE ROAS</td>
+          <td>BE - Target</td>
+          <td>At Target ROAS</td>
+          <td>&gt; Target ROAS</td>
         </tr>
         <tr>
           <td><strong>Frequency (7-day)</strong></td>
@@ -1529,20 +1536,26 @@
     <h3>How Metrics Relate to Each Other</h3>
     <div style="background: var(--gray-100); border-radius: 12px; padding: 1.5rem;">
       <p><strong>The Metric Chain:</strong> Metrics flow into each other in a sequence. A problem at any point cascades down.</p>
-      <div style="font-family: monospace; background: var(--gray-900); color: #E0E0E0; padding: 1.5rem; border-radius: 10px; text-align: center; margin: 1rem 0; font-size: 0.95rem; line-height: 2;">
-        <span style="color: #64B5F6;">CPM</span> (visibility cost) &rarr;
+      <div style="font-family: monospace; background: var(--gray-900); color: #E0E0E0; padding: 1.5rem; border-radius: 10px; text-align: center; margin: 1rem 0; font-size: 0.9rem; line-height: 2.2;">
+        <span style="color: #64B5F6;">CPM</span> (visibility) &rarr;
         <span style="color: #81C784;">Hook Rate</span> (attention) &rarr;
         <span style="color: #FFB74D;">CTR</span> (interest) &rarr;
         <span style="color: #F48FB1;">CPC</span> (traffic cost) &rarr;
-        <span style="color: #CE93D8;">CVR</span> (conversion) &rarr;
-        <span style="color: #EF5350;">CPA</span> (acquisition cost) &rarr;
-        <span style="color: #4CAF50;">ROAS</span> (profitability)
+        <span style="color: #CE93D8;">ATC %</span> (desire) &rarr;
+        <span style="color: #BA68C8;">IC %</span> (intent) &rarr;
+        <span style="color: #EF5350;">CVR</span> (purchase) &rarr;
+        <span style="color: #4CAF50;">ROAS</span> (profit)
+      </div>
+      <div class="highlight-box" style="margin-top: 1rem;">
+        <strong>Key insight:</strong> CPC is completely dependent on CPM and CTR. High CPM + Low CTR = High CPC. Low CPM + High CTR = Low CPC. You can't fix CPC directly &mdash; you fix it by improving your creative (CTR) or being in a less competitive auction (CPM).
       </div>
       <ul style="margin-top: 1rem;">
-        <li><strong>High CPM + Low CTR</strong> = You are paying a premium to reach people who do not engage &rarr; Fix creative or audience</li>
-        <li><strong>Good CTR + High CPC</strong> = People click but competition is high in your niche &rarr; Improve ad relevance score</li>
-        <li><strong>Good CPC + Low CVR</strong> = You drive cheap traffic that does not buy &rarr; Fix landing page, offer, or targeting</li>
-        <li><strong>Good CVR + Low ROAS</strong> = People buy but AOV is too low relative to ad cost &rarr; Increase AOV via bundles/upsells</li>
+        <li><strong>Low Hook Rate + Low CTR</strong> = Your ad isn't stopping the scroll &rarr; Test different hooks. The hook is the problem, not the rest of the ad.</li>
+        <li><strong>Good Hook Rate + Low CTR</strong> = People watch but don't click &rarr; Fix your Hold Rate. Improve the body of the ad and your call to action.</li>
+        <li><strong>Good CTR + Low ATC %</strong> = People click but don't add to cart &rarr; Fix your offer, pricing, or above-the-fold on your product page.</li>
+        <li><strong>Good ATC % + Low IC %</strong> = People add to cart but don't checkout &rarr; Fix your drawer cart (discounts showing? trust elements? technical issues?).</li>
+        <li><strong>Good IC % + Low CVR</strong> = People start checkout but abandon &rarr; Fix store speed, checkout friction, or you need better creatives that sell harder.</li>
+        <li><strong>Good CVR + Low ROAS</strong> = People buy but you're not profitable &rarr; Increase AOV via bundles/upsells or reduce CPA.</li>
       </ul>
     </div>
   </div>
@@ -1564,6 +1577,108 @@
         <tr><td>November</td><td style="color: var(--danger);">Peak CPMs (+18% avg from Oct)</td><td>Only run proven winners. Pause experiments</td></tr>
         <tr><td>December</td><td>Declining from Nov peak</td><td>Scale holiday offers. Retargeting focus</td></tr>
       </table>
+    </div>
+  </div>
+
+  <!-- METRIC BY METRIC DEEP DIVE -->
+  <div class="card" style="border: 2px solid var(--primary);">
+    <h3 style="color: var(--primary);">Metric-by-Metric Deep Dive: What It Means, Benchmarks &amp; How to Fix</h3>
+    <p style="margin-bottom: 1.5rem;">Each metric tells you something specific about where your funnel is breaking. Read these in order &mdash; they follow the customer journey from seeing your ad to buying.</p>
+
+    <!-- HOOK RATE -->
+    <div style="background: var(--gray-100); border-radius: 12px; padding: 1.5rem; margin-bottom: 1.5rem; border-left: 4px solid #81C784;">
+      <h4 style="color: var(--dark); margin-top: 0; font-size: 1.1rem;">1. Hook Rate &mdash; "Did they stop scrolling?"</h4>
+      <p>The percentage of people that watched at least the first 3 seconds of your ad. This is actually much more important than you would think to your overall profitability.</p>
+      <div class="highlight-box" style="margin: 1rem 0;">
+        <strong>Benchmark:</strong> AT LEAST <strong>30%</strong>. Anything lower is unlikely to be profitable. A great hook rate is <strong>40% or higher</strong>.
+      </div>
+      <h4>How to Fix a Low Hook Rate:</h4>
+      <ul>
+        <li><strong>Test different hooks.</strong> If the rest of your creative did alright (decent CTR, but low Hook Rate) then simply swap out the hook. The hook is the cheapest thing to test.</li>
+        <li><strong>Study proven hooks.</strong> Use tools like GetHookd to analyze the top performing creatives. Focus specifically on the first 3-5 seconds &mdash; what are they doing that is hooking their audience in? Try it for your own brand.</li>
+        <li><strong>Don't hook the wrong fish.</strong> Yes, create hooks that are enticing and STOP THE SCROLL. But make sure you are stopping the scroll for something your ideal customer cares about, not something general that applies to anyone. When you speak to everyone you speak to no one. Be loud, but speak in the frequency of your customers, not to the general public.</li>
+      </ul>
+    </div>
+
+    <!-- CTR -->
+    <div style="background: var(--gray-100); border-radius: 12px; padding: 1.5rem; margin-bottom: 1.5rem; border-left: 4px solid #FFB74D;">
+      <h4 style="color: var(--dark); margin-top: 0; font-size: 1.1rem;">2. CTR (Click-Through Rate) &mdash; "Did they take action?"</h4>
+      <p>How good your creative is at getting people to take action (click "Shop Now"). It's not necessarily how good your creative is at driving purchases &mdash; however, the best creatives usually have a high CTR.</p>
+      <div class="highlight-box" style="margin: 1rem 0;">
+        <strong>Benchmark:</strong> AT LEAST <strong>2%</strong>. This is mediocre, but if your conversion rate and margins are good, you can still be profitable. <strong>Good creatives are usually between 3% to 4% CTR.</strong> Below 2%, you need more engaging creatives that drive action.
+      </div>
+      <h4>How to Fix a Low CTR:</h4>
+      <ul>
+        <li><strong>Start with your Hook Rate.</strong> If a low amount of people are watching the first 3 seconds, then obviously a low amount of people are watching the rest of your ad as well.</li>
+        <li><strong>Then check your Hold Rate.</strong> Everything that comes after the first 3 seconds. What can you improve to keep your customer engaged? Do you have a clear and concise call to action?</li>
+        <li><strong>For image ads:</strong> test more headline variations, or completely different designs altogether. The nice thing is that image ads are faster to make so you can get more out faster.</li>
+        <li><strong>Overall:</strong> The best advice for getting a higher CTR is just run more ads. Test more creatives. Test more angles. Become a better marketer.</li>
+      </ul>
+    </div>
+
+    <!-- CPC -->
+    <div style="background: var(--gray-100); border-radius: 12px; padding: 1.5rem; margin-bottom: 1.5rem; border-left: 4px solid #F48FB1;">
+      <h4 style="color: var(--dark); margin-top: 0; font-size: 1.1rem;">3. CPC (Cost Per Click) &mdash; "How much per visitor?"</h4>
+      <p>How much you pay per visitor on your store. <strong>Completely dependent on CPM and CTR.</strong> High CPM + Low CTR = High CPC. Low CPM + High CTR = Low CPC.</p>
+      <div class="highlight-box" style="margin: 1rem 0;">
+        <strong>Benchmark:</strong> Aim for a CPC of around <strong>$1 USD</strong> (based on a 2% average ecom conversion rate). However, a creative can still be profitable at a significantly higher CPC if the ad is driving "hotter," more "ready to buy" traffic.
+      </div>
+      <h4>How to Fix a High CPC:</h4>
+      <ul>
+        <li>Because CPC is dependent on CPM and CTR, the only thing you can do is <strong>be in a less competitive auction</strong> (different market/audience) or <strong>have a more engaging creative</strong> (higher CTR).</li>
+        <li><strong>Watch out for "clickbait" ads</strong> that get a lot of people to click out of curiosity, not out of buying intent. A low CPC means nothing if the traffic doesn't convert.</li>
+      </ul>
+    </div>
+
+    <!-- ATC -->
+    <div style="background: var(--gray-100); border-radius: 12px; padding: 1.5rem; margin-bottom: 1.5rem; border-left: 4px solid #CE93D8;">
+      <h4 style="color: var(--dark); margin-top: 0; font-size: 1.1rem;">4. ATC % (Add to Cart Rate) &mdash; "Do they want it?"</h4>
+      <p>The percentage of people that add to cart after clicking your ad and landing on your store. It takes between 2-3 add to carts to get 1 purchase.</p>
+      <div class="highlight-box" style="margin: 1rem 0;">
+        <strong>Benchmark:</strong> Aim for <strong>8% to 10%</strong>.
+      </div>
+      <h4>If Your ATC % is Low, It Could Indicate:</h4>
+      <ul>
+        <li><strong>Your offer is not enticing enough.</strong> Try a different price point. Offer different quantity breaks/discounts (BOGO FREE, B2G1 FREE, etc). Display your offer differently ($39.95/ea instead of $79.95).</li>
+        <li><strong>The copy on your product page is not convincing enough.</strong> Always start with changing what's on the top of your page (the above the fold). It's the "Hook" of your product page. Just like we analyze our hooks when CTR from our ads is low, we start with the first elements people see on our store.</li>
+        <li>This means changing your announcement bar, the first image of your product, changing your value proposition sentence, changing the benefit bullet points, etc.</li>
+        <li><strong>Use Microsoft Clarity</strong> to see how many people are dropping off at each section of your page (focus on Mobile view).</li>
+      </ul>
+    </div>
+
+    <!-- IC -->
+    <div style="background: var(--gray-100); border-radius: 12px; padding: 1.5rem; margin-bottom: 1.5rem; border-left: 4px solid #BA68C8;">
+      <h4 style="color: var(--dark); margin-top: 0; font-size: 1.1rem;">5. IC % (Initiate Checkout Rate) &mdash; "Did they commit?"</h4>
+      <p>The percentage of people that clicked "Checkout" after adding your product(s) to their cart. There will naturally be a drop-off here.</p>
+      <div class="highlight-box" style="margin: 1rem 0;">
+        <strong>Benchmark:</strong> About <strong>75% of your ATC rate</strong>, so around <strong>6% to 8%</strong>. If your drop-off rate is higher than this, it indicates a problem with your drawer cart.
+      </div>
+      <h4>If Your IC % is Low, It Could Indicate:</h4>
+      <ul>
+        <li><strong>Visual or technical issue on your drawer cart.</strong> Ensure the discounts displayed on your product page are properly showing in the cart. Avoid adding upsells here initially as they could affect the customer's decision and buying process.</li>
+        <li><strong>Lack of trust elements on your drawer cart.</strong> Things like free shipping, money back guarantees, etc.</li>
+        <li><strong>Lack of urgency or scarcity.</strong> This is something to test only if there is a big drop-off. A timer or "limited stock" message can help, but be careful &mdash; it could also seem too "pushy" or anxiety-inducing.</li>
+      </ul>
+    </div>
+
+    <!-- CVR -->
+    <div style="background: var(--gray-100); border-radius: 12px; padding: 1.5rem; border-left: 4px solid #EF5350;">
+      <h4 style="color: var(--dark); margin-top: 0; font-size: 1.1rem;">6. CVR % (Conversion Rate) &mdash; "Did they buy?"</h4>
+      <p>The percentage of people that placed an order after initiating checkout. This is heavily influenced by your price point &mdash; higher ticket products will have lower conversion rates as more people need time to decide.</p>
+      <div class="highlight-box" style="margin: 1rem 0;">
+        <strong>Benchmark:</strong> Aim for <strong>2% to 4%</strong>.
+      </div>
+      <div class="highlight-box danger" style="margin: 1rem 0;">
+        <strong>Critical mindset shift:</strong> Conversion rate is NOT just isolated to your product page or checkout. <strong>It's the whole customer experience so far.</strong> Your customer didn't get amnesia right after clicking your ad. How well your ad sold them transfers directly to their chances of buying on your store.
+      </div>
+      <h4>How to Fix a Low Conversion Rate:</h4>
+      <ul>
+        <li><strong>Ensure your store's speed is fast.</strong> If your store is slow, it will be especially apparent when loading checkout. If it takes too long, they will abandon.</li>
+        <li><strong>You need better creatives.</strong> Make better, more convincing creatives and your conversion rate WILL increase. The ad sets the expectation and the desire.</li>
+        <li><strong>You need a better ATC rate.</strong> ATC is the market's way of saying "ooh, yeah, I want this!" It's the first and most meaningful display of real purchasing intent.</li>
+        <li><strong>Keep testing and gathering data.</strong> If you're hovering around break-even, keep testing more creatives, different offers, different tweaks on your above-the-fold. Over time your Meta pixel will also become stronger, meaning better targeting and better traffic.</li>
+        <li><strong>Don't force it.</strong> If you have 0 sales and are losing most of your ad budget, don't think that more data on your pixel will magically fix everything. It won't. Go back to creative and offer.</li>
+      </ul>
     </div>
   </div>
 </section>
