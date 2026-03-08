@@ -1,0 +1,1980 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Meta Ads Master Framework for Ecommerce</title>
+<style>
+  :root {
+    --primary: #1877F2;
+    --primary-dark: #1565C0;
+    --accent: #42B72A;
+    --danger: #E74C3C;
+    --warning: #F39C12;
+    --success: #27AE60;
+    --dark: #1C1E21;
+    --gray-900: #2D2F33;
+    --gray-800: #3A3B3D;
+    --gray-700: #4E4F50;
+    --gray-600: #65676B;
+    --gray-400: #B0B3B8;
+    --gray-200: #E4E6EB;
+    --gray-100: #F0F2F5;
+    --white: #FFFFFF;
+    --bg: #F7F8FA;
+    --card-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    --section-gap: 3rem;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    background: var(--bg);
+    color: var(--dark);
+    line-height: 1.7;
+    font-size: 16px;
+  }
+
+  /* ===== HEADER ===== */
+  .hero {
+    background: linear-gradient(135deg, #0A1628 0%, #1A2744 40%, #1877F2 100%);
+    color: var(--white);
+    padding: 4rem 2rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle at 30% 70%, rgba(24,119,242,0.15) 0%, transparent 50%),
+                radial-gradient(circle at 70% 30%, rgba(66,183,42,0.1) 0%, transparent 50%);
+    animation: pulse 8s ease-in-out infinite;
+  }
+  @keyframes pulse { 0%,100% { transform: scale(1); } 50% { transform: scale(1.05); } }
+  .hero-content { position: relative; z-index: 1; max-width: 900px; margin: 0 auto; }
+  .hero-badge {
+    display: inline-block;
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.25);
+    border-radius: 50px;
+    padding: 0.4rem 1.2rem;
+    font-size: 0.85rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    backdrop-filter: blur(4px);
+  }
+  .hero h1 {
+    font-size: 2.8rem;
+    font-weight: 800;
+    line-height: 1.2;
+    margin-bottom: 1rem;
+    letter-spacing: -0.02em;
+  }
+  .hero p { font-size: 1.15rem; opacity: 0.9; max-width: 650px; margin: 0 auto 2rem; }
+  .hero-stats {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+  .hero-stat {
+    text-align: center;
+    padding: 1rem;
+    background: rgba(255,255,255,0.1);
+    border-radius: 12px;
+    min-width: 140px;
+    backdrop-filter: blur(4px);
+  }
+  .hero-stat .num { font-size: 1.8rem; font-weight: 800; display: block; }
+  .hero-stat .label { font-size: 0.8rem; opacity: 0.8; text-transform: uppercase; letter-spacing: 0.05em; }
+
+  /* ===== NAV / TOC ===== */
+  .toc-bar {
+    background: var(--white);
+    border-bottom: 1px solid var(--gray-200);
+    padding: 1rem 2rem;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  }
+  .toc-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    gap: 0.5rem;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .toc-inner::-webkit-scrollbar { display: none; }
+  .toc-link {
+    white-space: nowrap;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--gray-600);
+    text-decoration: none;
+    transition: all 0.2s;
+    border: 1px solid transparent;
+  }
+  .toc-link:hover { background: var(--gray-100); color: var(--primary); }
+  .toc-link.active { background: var(--primary); color: var(--white); }
+
+  /* ===== MAIN LAYOUT ===== */
+  .container { max-width: 1200px; margin: 0 auto; padding: 2rem; }
+
+  /* ===== SECTION STYLING ===== */
+  .section {
+    margin-bottom: var(--section-gap);
+    scroll-margin-top: 80px;
+  }
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 3px solid var(--primary);
+  }
+  .section-number {
+    background: var(--primary);
+    color: var(--white);
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    font-weight: 800;
+    flex-shrink: 0;
+  }
+  .section-title { font-size: 1.8rem; font-weight: 800; color: var(--dark); }
+
+  /* ===== CARDS ===== */
+  .card {
+    background: var(--white);
+    border-radius: 16px;
+    padding: 2rem;
+    margin-bottom: 1.5rem;
+    box-shadow: var(--card-shadow);
+    border: 1px solid var(--gray-200);
+  }
+  .card h3 {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--dark);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .card h4 {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--gray-800);
+    margin: 1.2rem 0 0.6rem;
+  }
+  .card p, .card li {
+    color: var(--gray-700);
+    line-height: 1.8;
+  }
+  .card ul, .card ol {
+    padding-left: 1.5rem;
+    margin: 0.5rem 0;
+  }
+  .card li { margin-bottom: 0.4rem; }
+
+  /* ===== GRID LAYOUTS ===== */
+  .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 1.5rem; }
+  .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
+  .grid-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; }
+
+  /* ===== SPECIAL COMPONENTS ===== */
+  .highlight-box {
+    background: linear-gradient(135deg, #EBF5FB 0%, #D6EAF8 100%);
+    border-left: 4px solid var(--primary);
+    border-radius: 0 12px 12px 0;
+    padding: 1.5rem;
+    margin: 1rem 0;
+  }
+  .highlight-box.warning {
+    background: linear-gradient(135deg, #FEF9E7 0%, #FDF2D2 100%);
+    border-left-color: var(--warning);
+  }
+  .highlight-box.danger {
+    background: linear-gradient(135deg, #FDEDEC 0%, #FADBD8 100%);
+    border-left-color: var(--danger);
+  }
+  .highlight-box.success {
+    background: linear-gradient(135deg, #EAFAF1 0%, #D5F5E3 100%);
+    border-left-color: var(--success);
+  }
+  .highlight-box strong { color: var(--dark); }
+
+  .tag {
+    display: inline-block;
+    padding: 0.2rem 0.7rem;
+    border-radius: 6px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+  }
+  .tag-blue { background: #E3F2FD; color: #1565C0; }
+  .tag-green { background: #E8F5E9; color: #2E7D32; }
+  .tag-red { background: #FFEBEE; color: #C62828; }
+  .tag-orange { background: #FFF3E0; color: #E65100; }
+  .tag-purple { background: #F3E5F5; color: #6A1B9A; }
+
+  /* ===== TABLES ===== */
+  .table-wrap { overflow-x: auto; margin: 1rem 0; border-radius: 12px; border: 1px solid var(--gray-200); }
+  table { width: 100%; border-collapse: collapse; font-size: 0.95rem; }
+  th {
+    background: var(--gray-900);
+    color: var(--white);
+    padding: 1rem;
+    text-align: left;
+    font-weight: 700;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+  td { padding: 0.85rem 1rem; border-bottom: 1px solid var(--gray-200); }
+  tr:last-child td { border-bottom: none; }
+  tr:nth-child(even) { background: var(--gray-100); }
+
+  /* ===== METRIC CARDS ===== */
+  .metric-card {
+    background: var(--white);
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: var(--card-shadow);
+    border: 1px solid var(--gray-200);
+    text-align: center;
+  }
+  .metric-card .metric-label {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--gray-600);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.5rem;
+  }
+  .metric-card .metric-value {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--primary);
+    margin-bottom: 0.3rem;
+  }
+  .metric-card .metric-range {
+    font-size: 0.85rem;
+    color: var(--gray-600);
+  }
+
+  /* ===== STEP INDICATORS ===== */
+  .step {
+    display: flex;
+    gap: 1.2rem;
+    margin-bottom: 1.5rem;
+    align-items: flex-start;
+  }
+  .step-num {
+    width: 36px;
+    height: 36px;
+    background: var(--primary);
+    color: var(--white);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 0.9rem;
+    flex-shrink: 0;
+    margin-top: 0.2rem;
+  }
+  .step-content { flex: 1; }
+  .step-content h4 { margin-top: 0; }
+
+  /* ===== TIMELINE ===== */
+  .timeline { position: relative; padding-left: 2rem; }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 15px;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: linear-gradient(to bottom, var(--primary), var(--accent));
+    border-radius: 2px;
+  }
+  .timeline-item {
+    position: relative;
+    margin-bottom: 2rem;
+    padding-left: 2rem;
+  }
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -2rem;
+    top: 0.5rem;
+    width: 14px;
+    height: 14px;
+    background: var(--primary);
+    border-radius: 50%;
+    border: 3px solid var(--white);
+    box-shadow: 0 0 0 3px var(--primary);
+  }
+  .timeline-item h4 { color: var(--primary); margin-bottom: 0.5rem; }
+
+  /* ===== DECISION TREE ===== */
+  .decision-node {
+    background: var(--white);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+    border-left: 4px solid var(--danger);
+    box-shadow: var(--card-shadow);
+  }
+  .decision-node.fix { border-left-color: var(--accent); }
+  .decision-node h4 {
+    color: var(--danger);
+    margin-bottom: 0.5rem;
+    font-size: 1.05rem;
+  }
+  .decision-node.fix h4 { color: var(--success); }
+  .arrow-down {
+    text-align: center;
+    font-size: 1.5rem;
+    color: var(--gray-400);
+    margin: 0.3rem 0;
+  }
+
+  /* ===== NAMING CONVENTION ===== */
+  .naming-example {
+    background: var(--gray-900);
+    color: #E0E0E0;
+    padding: 1.2rem 1.5rem;
+    border-radius: 10px;
+    font-family: 'SF Mono', 'Fira Code', monospace;
+    font-size: 0.9rem;
+    overflow-x: auto;
+    margin: 0.8rem 0;
+    line-height: 1.8;
+  }
+  .naming-example .hl-blue { color: #64B5F6; }
+  .naming-example .hl-green { color: #81C784; }
+  .naming-example .hl-orange { color: #FFB74D; }
+  .naming-example .hl-pink { color: #F48FB1; }
+  .naming-example .hl-white { color: #FFFFFF; font-weight: 700; }
+
+  /* ===== FORMULA ===== */
+  .formula {
+    background: var(--gray-900);
+    color: var(--white);
+    padding: 1.2rem 1.5rem;
+    border-radius: 10px;
+    font-family: 'SF Mono', 'Fira Code', monospace;
+    font-size: 1.05rem;
+    text-align: center;
+    margin: 1rem 0;
+    letter-spacing: 0.02em;
+  }
+
+  /* ===== CHECKLIST ===== */
+  .checklist { list-style: none; padding: 0; }
+  .checklist li {
+    padding: 0.7rem 0 0.7rem 2rem;
+    position: relative;
+    border-bottom: 1px solid var(--gray-200);
+  }
+  .checklist li:last-child { border-bottom: none; }
+  .checklist li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--gray-400);
+    border-radius: 4px;
+  }
+
+  /* ===== COMPARISON BOXES ===== */
+  .vs-container { display: grid; grid-template-columns: 1fr auto 1fr; gap: 1rem; align-items: center; margin: 1rem 0; }
+  .vs-box { background: var(--white); border-radius: 12px; padding: 1.5rem; box-shadow: var(--card-shadow); }
+  .vs-box.good { border: 2px solid var(--success); }
+  .vs-box.bad { border: 2px solid var(--danger); }
+  .vs-divider {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--gray-400);
+  }
+
+  /* ===== FOOTER ===== */
+  .footer {
+    background: var(--gray-900);
+    color: var(--gray-400);
+    padding: 3rem 2rem;
+    text-align: center;
+    font-size: 0.9rem;
+    margin-top: 4rem;
+  }
+  .footer strong { color: var(--white); }
+
+  /* ===== LINKS ===== */
+  a[target="_blank"] { text-decoration: none; transition: opacity 0.2s; }
+  a[target="_blank"]:hover { opacity: 0.7; text-decoration: underline; }
+  .help-link {
+    display: inline-block;
+    margin-top: 0.5rem;
+    font-size: 0.85rem;
+    color: var(--gray-600);
+    text-decoration: none;
+  }
+  .help-link:hover { color: var(--primary); text-decoration: underline; }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 768px) {
+    .hero h1 { font-size: 2rem; }
+    .hero-stats { gap: 1rem; }
+    .hero-stat { min-width: 120px; }
+    .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+    .vs-container { grid-template-columns: 1fr; }
+    .vs-divider { text-align: center; }
+    .section-title { font-size: 1.4rem; }
+    .card { padding: 1.5rem; }
+    .toc-bar { padding: 0.5rem 1rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============================================================ -->
+<!-- HERO HEADER -->
+<!-- ============================================================ -->
+<div class="hero">
+  <div class="hero-content">
+    <div class="hero-badge">Ecommerce Growth System</div>
+    <h1>Meta Ads Master Framework<br>for Ecommerce</h1>
+    <p>The complete, step-by-step system to launch, test, optimize, and scale profitable Meta ad campaigns. From pre-launch setup to advanced scaling playbooks.</p>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <span class="num">8</span>
+        <span class="label">Core Modules</span>
+      </div>
+      <div class="hero-stat">
+        <span class="num">50+</span>
+        <span class="label">Actionable Rules</span>
+      </div>
+      <div class="hero-stat">
+        <span class="num">100%</span>
+        <span class="label">Data-Backed</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- TABLE OF CONTENTS -->
+<!-- ============================================================ -->
+<nav class="toc-bar">
+  <div class="toc-inner">
+    <a href="#pre-launch" class="toc-link">1. Pre-Launch</a>
+    <a href="#architecture" class="toc-link">2. Campaign Architecture</a>
+    <a href="#creative" class="toc-link">3. Creative Strategy</a>
+    <a href="#launch" class="toc-link">4. Launch Sequence</a>
+    <a href="#decisions" class="toc-link">5. Kill / Scale Decisions</a>
+    <a href="#kpis" class="toc-link">6. KPI Benchmarks</a>
+    <a href="#scaling" class="toc-link">7. Scaling Playbook</a>
+    <a href="#troubleshooting" class="toc-link">8. Troubleshooting</a>
+  </div>
+</nav>
+
+<div class="container">
+
+<!-- ============================================================ -->
+<!-- SECTION 1: PRE-LAUNCH SETUP -->
+<!-- ============================================================ -->
+<section class="section" id="pre-launch">
+  <div class="section-header">
+    <div class="section-number">1</div>
+    <h2 class="section-title">Pre-Launch Setup (Before Spending $1)</h2>
+  </div>
+
+  <div class="highlight-box">
+    <strong>Why this matters:</strong> 70-80% of Meta ad performance stems from creative quality and data accuracy, not budget or targeting. Getting your foundation right before you spend a single dollar prevents wasted money and accelerates the algorithm's learning.
+  </div>
+
+  <div class="grid-2">
+    <!-- Business Manager -->
+    <div class="card">
+      <h3>A. Business Manager Setup</h3>
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-content">
+          <h4>Create Business Portfolio</h4>
+          <p>Go to <a href="https://business.facebook.com/" target="_blank" style="color: var(--primary); font-weight: 600;">business.facebook.com</a> and create your Business Portfolio (formerly Business Manager). Use your legal business name and real business details. This takes 10-15 minutes.</p>
+          <p style="margin-top: 0.4rem; font-size: 0.85rem;"><a href="https://www.facebook.com/business/help/1710077379203657" target="_blank" style="color: var(--gray-600);">Need help? Meta's Business Manager Setup Guide &rarr;</a></p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-content">
+          <h4>Connect Assets</h4>
+          <p>In <a href="https://business.facebook.com/settings/" target="_blank" style="color: var(--primary); font-weight: 600;">Business Settings</a>, add your Facebook Page, Instagram account, and WhatsApp (if applicable). Create a dedicated Ad Account under <a href="https://business.facebook.com/settings/ad-accounts" target="_blank" style="color: var(--primary); font-weight: 600;">Ad Accounts</a>.</p>
+          <p style="margin-top: 0.4rem; font-size: 0.85rem;"><a href="https://www.facebook.com/business/help/720478807965744" target="_blank" style="color: var(--gray-600);">Need help? Adding Assets to Business Manager &rarr;</a></p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-content">
+          <h4>Enable 2FA & Security</h4>
+          <p>Go to <a href="https://accountscenter.facebook.com/password_and_security/two_factor" target="_blank" style="color: var(--primary); font-weight: 600;">Accounts Center &gt; Password & Security &gt; Two-Factor Authentication</a> and enable 2FA on all admin accounts. Meta requires this and it protects against account compromise that can halt campaigns.</p>
+          <p style="margin-top: 0.4rem; font-size: 0.85rem;"><a href="https://www.facebook.com/business/help/280940009201586" target="_blank" style="color: var(--gray-600);">Need help? Meta's 2FA Setup Guide &rarr;</a></p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-content">
+          <h4>Verify Domain</h4>
+          <p>Go to <a href="https://business.facebook.com/settings/owned-domains" target="_blank" style="color: var(--primary); font-weight: 600;">Business Settings &gt; Brand Safety &gt; Domains</a>. Add your domain and verify via DNS TXT record or HTML meta tag. This unlocks Aggregated Event Measurement and better conversion tracking.</p>
+          <p style="margin-top: 0.4rem; font-size: 0.85rem;"><a href="https://www.facebook.com/business/help/286768115176155" target="_blank" style="color: var(--gray-600);">Need help? Domain Verification Guide &rarr;</a></p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">5</div>
+        <div class="step-content">
+          <h4>Complete Business Verification</h4>
+          <p>Go to <a href="https://business.facebook.com/settings/security" target="_blank" style="color: var(--primary); font-weight: 600;">Business Settings &gt; Security Center</a> and click "Start Verification." Submit business documents (articles of incorporation, tax registration, utility bills). Review takes 1-5 business days. This unlocks higher spending limits, faster ad approvals, and reduced suspension risk.</p>
+          <p style="margin-top: 0.4rem; font-size: 0.85rem;"><a href="https://www.facebook.com/business/help/2058515294227817" target="_blank" style="color: var(--gray-600);">Need help? Business Verification Guide &rarr;</a></p>
+        </div>
+      </div>
+      <div class="highlight-box warning">
+        <strong>Warning:</strong> "Start Verification" appears only once per business. After three failed attempts, you must open a support ticket. Get your documents right the first time.
+      </div>
+    </div>
+
+    <!-- Pixel & CAPI -->
+    <div class="card">
+      <h3>B. Pixel & Conversions API (CAPI)</h3>
+      <p>Server-side tracking with CAPI recovers 10-30% of conversions lost to ad blockers and iOS privacy restrictions. Businesses report up to 30% improvement in ROAS after implementing CAPI.</p>
+
+      <h4>For Shopify Stores (Simplest Method)</h4>
+      <ol>
+        <li>Install the <a href="https://apps.shopify.com/facebook" target="_blank" style="color: var(--primary); font-weight: 600;">Facebook & Instagram app</a> in Shopify admin</li>
+        <li>In the app, go to Settings &gt; Data Sharing Settings</li>
+        <li>Select <strong>"Maximum"</strong> data sharing level (sends both Pixel + CAPI)</li>
+        <li>Verify in <a href="https://business.facebook.com/events_manager2" target="_blank" style="color: var(--primary); font-weight: 600;">Events Manager</a> &gt; Pixel &gt; Settings that CAPI shows "Active"</li>
+      </ol>
+      <p style="margin-top: 0.4rem; font-size: 0.85rem;"><a href="https://www.facebook.com/business/help/952192354843755" target="_blank" style="color: var(--gray-600);">Need help? Meta Pixel Setup Guide &rarr;</a> &nbsp;|&nbsp; <a href="https://www.facebook.com/business/help/2041148702652965" target="_blank" style="color: var(--gray-600);">Conversions API Guide &rarr;</a></p>
+
+      <h4>Configure These Events</h4>
+      <div class="table-wrap">
+        <table>
+          <tr><th>Event</th><th>Priority</th><th>Trigger</th></tr>
+          <tr><td><strong>Purchase</strong></td><td><span class="tag tag-red">Critical</span></td><td>Order confirmation page</td></tr>
+          <tr><td><strong>AddToCart</strong></td><td><span class="tag tag-orange">High</span></td><td>Add to cart button click</td></tr>
+          <tr><td><strong>InitiateCheckout</strong></td><td><span class="tag tag-orange">High</span></td><td>Checkout page load</td></tr>
+          <tr><td><strong>ViewContent</strong></td><td><span class="tag tag-blue">Medium</span></td><td>Product page view</td></tr>
+        </table>
+      </div>
+
+      <h4>Post-Setup Checklist</h4>
+      <ul>
+        <li>Enable <strong>Advanced Matching</strong> (email, phone) in <a href="https://business.facebook.com/events_manager2" target="_blank" style="color: var(--primary);">Events Manager</a> &gt; Settings</li>
+        <li>Enable <strong>Automatic Event Deduplication</strong> to prevent double counting</li>
+        <li>Check Event Match Quality (EMQ) score &mdash; aim for 6.0+ (<a href="https://www.facebook.com/business/help/765081237991954" target="_blank" style="color: var(--gray-600); font-size: 0.85rem;">What is EMQ? &rarr;</a>)</li>
+        <li>Use the <a href="https://business.facebook.com/events_manager2/overview" target="_blank" style="color: var(--primary);">Test Events</a> tab in Events Manager to verify events fire correctly on your site</li>
+      </ul>
+      <p style="margin-top: 0.4rem; font-size: 0.85rem;"><a href="https://www.facebook.com/business/help/403435800888498" target="_blank" style="color: var(--gray-600);">Troubleshooting Pixel Issues &rarr;</a> &nbsp;|&nbsp; <a href="https://developers.facebook.com/docs/meta-pixel/support/pixel-helper" target="_blank" style="color: var(--gray-600);">Install Meta Pixel Helper Chrome Extension &rarr;</a></p>
+    </div>
+  </div>
+
+  <div class="grid-2">
+    <!-- Catalog -->
+    <div class="card">
+      <h3>C. Product Catalog Setup</h3>
+      <p>Dynamic Product Ads (DPAs) deliver 2-3x higher ROAS than standard ads. For ecommerce, catalog ads often represent 60%+ of Meta ad spend.</p>
+
+      <h4>Setup Steps</h4>
+      <ol>
+        <li>Go to <a href="https://business.facebook.com/commerce" target="_blank" style="color: var(--primary); font-weight: 600;">Meta Commerce Manager</a></li>
+        <li>Click "Create a Catalogue" &gt; Select "E-Commerce"</li>
+        <li>Connect your platform (Shopify, WooCommerce, etc.) for automatic sync</li>
+        <li>Verify all products have: title, description, price, availability, image URL, SKU</li>
+        <li>Create Product Sets for specific categories (bestsellers, seasonal, price ranges)</li>
+      </ol>
+      <p style="margin-top: 0.4rem; font-size: 0.85rem;"><a href="https://www.facebook.com/business/help/1275400645914358" target="_blank" style="color: var(--gray-600);">Need help? Catalog Setup Guide &rarr;</a> &nbsp;|&nbsp; <a href="https://www.facebook.com/business/help/2041876302542944" target="_blank" style="color: var(--gray-600);">Troubleshooting Catalog Issues &rarr;</a></p>
+
+      <h4>Image Requirements</h4>
+      <ul>
+        <li><strong>Single Image:</strong> 1200 x 1200 px</li>
+        <li><strong>Carousel:</strong> 1080 x 1080 px</li>
+        <li><strong>Collection:</strong> 1200 x 628 px</li>
+        <li>Use lifestyle images over plain white backgrounds (especially for apparel)</li>
+      </ul>
+    </div>
+
+    <!-- Audience & Creative Prep -->
+    <div class="card">
+      <h3>D. Audience Research & Creative Prep</h3>
+
+      <h4>Audience Research (2025+ Reality)</h4>
+      <p>With Meta's Andromeda algorithm (launched late 2024), <strong>creative quality IS your targeting.</strong> Meta's AI analyzes your creative elements to determine who sees your ads. That said, prepare these assets:</p>
+      <ul>
+        <li><strong>Customer lists:</strong> Export email lists segmented by revenue tier (high-value vs. all customers)</li>
+        <li><strong>Lookalike seed audiences:</strong> Top 1-3% of purchasers, high AOV customers</li>
+        <li><strong>Competitor research:</strong> Use <a href="https://www.facebook.com/ads/library/" target="_blank" style="color: var(--primary); font-weight: 600;">Meta Ad Library</a> to study competitors' ad creative, hooks, and offers</li>
+      </ul>
+
+      <h4>Creative Asset Preparation</h4>
+      <p>Prepare a minimum of 12-16 ads before launching (3-4 ad sets x 3-4 ads each):</p>
+      <ul>
+        <li><strong>3-4 distinct concepts</strong> (different angles/hooks, not just color variations)</li>
+        <li><strong>3-4 variations per concept</strong> (different imagery, copy, or format)</li>
+        <li>Mix of formats: static images, short-form video (15-30s), UGC-style, and carousels</li>
+        <li>All in <strong>4:5 vertical aspect ratio</strong> (best performing format)</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>Pre-Launch Master Checklist</h3>
+    <div class="grid-3">
+      <div>
+        <h4>Technical</h4>
+        <ul class="checklist">
+          <li>Business Manager created & configured</li>
+          <li>Domain verified</li>
+          <li>Business verification submitted</li>
+          <li>2FA enabled on all admin accounts</li>
+          <li>Pixel installed & firing correctly</li>
+          <li>CAPI active (Maximum data sharing)</li>
+          <li>Advanced Matching enabled</li>
+          <li>Event deduplication configured</li>
+          <li>Product catalog synced & accurate</li>
+          <li>Payment method added to ad account (<a href="https://business.facebook.com/settings/payment-methods" target="_blank" style="color: var(--primary); font-size: 0.85rem;">Add here</a>)</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Numbers</h4>
+        <ul class="checklist">
+          <li>Product cost calculated</li>
+          <li>Shipping cost calculated</li>
+          <li>Break-even CPA calculated</li>
+          <li>Break-even ROAS calculated</li>
+          <li>Target ROAS defined</li>
+          <li>Daily budget determined ($50-$100 min)</li>
+          <li>Customer LTV estimated</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Creative</h4>
+        <ul class="checklist">
+          <li>3-4 distinct creative concepts ready</li>
+          <li>3-4 variations per concept</li>
+          <li>Mix of static + video formats</li>
+          <li>All assets in 4:5 ratio</li>
+          <li>Primary text written (2 variations)</li>
+          <li>Headlines written (2 variations)</li>
+          <li>Competitor ads researched via <a href="https://www.facebook.com/ads/library/" target="_blank" style="color: var(--primary);">Ad Library</a></li>
+          <li>Landing page tested & fast-loading</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>Know Your Numbers (Required Before Launching)</h3>
+    <p>Before spending anything, fill in your KPI spreadsheet with these three critical numbers:</p>
+    <div class="grid-3">
+      <div class="metric-card">
+        <div class="metric-label">Break-Even CPA</div>
+        <div class="formula" style="font-size: 0.85rem;">Selling Price - Product Cost - Shipping - Fees</div>
+        <div class="metric-range">The max you can spend to acquire a customer without losing money</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">Break-Even ROAS</div>
+        <div class="formula" style="font-size: 0.85rem;">1 &divide; Profit Margin</div>
+        <div class="metric-range">Example: 25% margin = 4.0 BE ROAS<br>40% margin = 2.5 BE ROAS</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">Target ROAS</div>
+        <div class="formula" style="font-size: 0.85rem;">Break-Even ROAS + Desired Profit</div>
+        <div class="metric-range">Typically 1.5-2x your break-even ROAS for testing phase</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" style="border: 2px solid var(--primary); background: linear-gradient(135deg, #F8FBFF 0%, #EBF5FB 100%);">
+    <h3 style="color: var(--primary);">Quick Links Hub &mdash; All Key URLs</h3>
+    <p style="margin-bottom: 1rem; color: var(--gray-700);">Bookmark these. You'll use them daily.</p>
+    <div class="grid-3">
+      <div>
+        <h4 style="color: var(--gray-800); margin-top: 0;">Setup &amp; Settings</h4>
+        <ul style="list-style: none; padding: 0;">
+          <li style="padding: 0.4rem 0; border-bottom: 1px solid var(--gray-200);"><a href="https://business.facebook.com/" target="_blank" style="color: var(--primary); font-weight: 600;">Business Manager Home</a></li>
+          <li style="padding: 0.4rem 0; border-bottom: 1px solid var(--gray-200);"><a href="https://business.facebook.com/settings/" target="_blank" style="color: var(--primary); font-weight: 600;">Business Settings</a></li>
+          <li style="padding: 0.4rem 0; border-bottom: 1px solid var(--gray-200);"><a href="https://business.facebook.com/settings/ad-accounts" target="_blank" style="color: var(--primary); font-weight: 600;">Ad Accounts</a></li>
+          <li style="padding: 0.4rem 0; border-bottom: 1px solid var(--gray-200);"><a href="https://business.facebook.com/settings/payment-methods" target="_blank" style="color: var(--primary); font-weight: 600;">Payment Methods</a></li>
+          <li style="padding: 0.4rem 0;"><a href="https://business.facebook.com/settings/security" target="_blank" style="color: var(--primary); font-weight: 600;">Security Center</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 style="color: var(--gray-800); margin-top: 0;">Daily Use</h4>
+        <ul style="list-style: none; padding: 0;">
+          <li style="padding: 0.4rem 0; border-bottom: 1px solid var(--gray-200);"><a href="https://adsmanager.facebook.com/adsmanager/manage/campaigns" target="_blank" style="color: var(--primary); font-weight: 600;">Ads Manager</a></li>
+          <li style="padding: 0.4rem 0; border-bottom: 1px solid var(--gray-200);"><a href="https://business.facebook.com/events_manager2" target="_blank" style="color: var(--primary); font-weight: 600;">Events Manager</a></li>
+          <li style="padding: 0.4rem 0; border-bottom: 1px solid var(--gray-200);"><a href="https://business.facebook.com/commerce" target="_blank" style="color: var(--primary); font-weight: 600;">Commerce Manager (Catalog)</a></li>
+          <li style="padding: 0.4rem 0; border-bottom: 1px solid var(--gray-200);"><a href="https://www.facebook.com/ads/library/" target="_blank" style="color: var(--primary); font-weight: 600;">Meta Ad Library (Spy on Competitors)</a></li>
+          <li style="padding: 0.4rem 0;"><a href="https://business.facebook.com/insights" target="_blank" style="color: var(--primary); font-weight: 600;">Audience Insights</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 style="color: var(--gray-800); margin-top: 0;">Help &amp; Support</h4>
+        <ul style="list-style: none; padding: 0;">
+          <li style="padding: 0.4rem 0; border-bottom: 1px solid var(--gray-200);"><a href="https://www.facebook.com/business/help" target="_blank" style="color: var(--primary); font-weight: 600;">Meta Business Help Center</a></li>
+          <li style="padding: 0.4rem 0; border-bottom: 1px solid var(--gray-200);"><a href="https://www.facebook.com/business/help/support" target="_blank" style="color: var(--primary); font-weight: 600;">Contact Meta Support</a></li>
+          <li style="padding: 0.4rem 0; border-bottom: 1px solid var(--gray-200);"><a href="https://developers.facebook.com/docs/meta-pixel/support/pixel-helper" target="_blank" style="color: var(--primary); font-weight: 600;">Meta Pixel Helper (Chrome)</a></li>
+          <li style="padding: 0.4rem 0; border-bottom: 1px solid var(--gray-200);"><a href="https://www.facebook.com/business/help/403435800888498" target="_blank" style="color: var(--primary); font-weight: 600;">Troubleshoot Pixel Issues</a></li>
+          <li style="padding: 0.4rem 0;"><a href="https://www.facebook.com/business/help/2041876302542944" target="_blank" style="color: var(--primary); font-weight: 600;">Troubleshoot Catalog Issues</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SECTION 2: CAMPAIGN ARCHITECTURE -->
+<!-- ============================================================ -->
+<section class="section" id="architecture">
+  <div class="section-header">
+    <div class="section-number">2</div>
+    <h2 class="section-title">Campaign Architecture</h2>
+  </div>
+
+  <div class="highlight-box">
+    <strong>The 2025/2026 Reality:</strong> Simplified campaign structures outperform complex funnels. Meta's AI thrives on consolidated data and clear objectives. The days of micromanaging dozens of ad sets are over. Two campaigns can now outperform twenty.
+  </div>
+
+  <div class="card">
+    <h3>Campaign Types Explained</h3>
+    <div class="table-wrap">
+      <table>
+        <tr>
+          <th>Type</th>
+          <th>What It Is</th>
+          <th>When to Use</th>
+          <th>Best For</th>
+        </tr>
+        <tr>
+          <td><strong>CBO</strong><br><span class="tag tag-blue">Campaign Budget Optimization</span></td>
+          <td>Meta distributes your campaign-level budget across ad sets automatically based on performance</td>
+          <td>Default choice for most campaigns. Use when testing 3-4 concepts in parallel</td>
+          <td>Testing + Scaling. Lets Meta's AI allocate to winners automatically</td>
+        </tr>
+        <tr>
+          <td><strong>ABO</strong><br><span class="tag tag-purple">Ad Set Budget Optimization</span></td>
+          <td>You set a fixed budget per ad set. Full manual control over spend distribution</td>
+          <td>When you need to guarantee equal spend across concepts for a clean A/B test</td>
+          <td>Controlled creative testing. Head-to-head comparison of specific variables</td>
+        </tr>
+        <tr>
+          <td><strong>ASC / Advantage+</strong><br><span class="tag tag-green">Advantage+ Sales Campaign</span></td>
+          <td>Fully automated. Meta handles targeting, placements, and creative optimization. Tests up to 150 creative combinations</td>
+          <td>When you have strong Pixel data (50+ weekly conversions) and proven creatives</td>
+          <td>Scaling proven winners. Brands with established conversion data. 22% higher ROAS reported vs. manual campaigns</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>Recommended 2-Campaign Structure</h3>
+    <div class="grid-2">
+      <div style="background: var(--gray-100); border-radius: 12px; padding: 1.5rem; border: 2px solid var(--primary);">
+        <h4 style="color: var(--primary); font-size: 1.1rem;">Campaign 1: Creative Testing</h4>
+        <p><strong>Type:</strong> CBO (or ABO for controlled tests)</p>
+        <p><strong>Budget:</strong> $50-$100/day (starting)</p>
+        <p><strong>Objective:</strong> Sales > Purchase</p>
+        <p><strong>Structure:</strong></p>
+        <ul>
+          <li>3-4 ad sets (1 concept per ad set)</li>
+          <li>3-6 ads per ad set (variations of that concept)</li>
+          <li>Broad targeting (country-level, all ages 18+)</li>
+          <li>Advantage+ Placements ON</li>
+        </ul>
+        <p><strong>Purpose:</strong> Find winning creative concepts. Feed Meta volume + variety. Kill losers fast, identify winners.</p>
+      </div>
+      <div style="background: var(--gray-100); border-radius: 12px; padding: 1.5rem; border: 2px solid var(--accent);">
+        <h4 style="color: var(--success); font-size: 1.1rem;">Campaign 2: Scaling / Evergreen</h4>
+        <p><strong>Type:</strong> ASC (Advantage+ Sales Campaign)</p>
+        <p><strong>Budget:</strong> Scale based on performance</p>
+        <p><strong>Objective:</strong> Sales > Purchase</p>
+        <p><strong>Structure:</strong></p>
+        <ul>
+          <li>Only proven winners from Campaign 1 graduate here</li>
+          <li>Broad targeting (let Meta's AI optimize fully)</li>
+          <li>Set "Existing Customer Budget Cap" (e.g., 20-30%) to focus on acquisition</li>
+          <li>Advantage+ Placements ON</li>
+        </ul>
+        <p><strong>Purpose:</strong> Scale winning creatives profitably. Leverage Meta's full automation. Maintain stable, profitable delivery.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>Budget Allocation Rules</h3>
+    <div class="grid-3">
+      <div class="highlight-box">
+        <strong>Minimum Daily Budget</strong><br>
+        $50/day (tight budget) or $100/day (recommended). Below $50, you lack sufficient data for Meta's algorithm to optimize.
+      </div>
+      <div class="highlight-box">
+        <strong>Learning Phase Math</strong><br>
+        Target CPA x 50 = minimum weekly budget.<br>
+        Example: $25 CPA x 50 = $1,250/week = ~$179/day minimum.
+      </div>
+      <div class="highlight-box">
+        <strong>Test vs. Scale Split</strong><br>
+        Start: 70% testing / 30% scaling.<br>
+        As you find winners: shift to 30% testing / 70% scaling.
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>Naming Conventions</h3>
+    <p>Consistent naming makes analysis, filtering, and reporting 10x faster. Use this system:</p>
+
+    <h4>Campaign Level</h4>
+    <div class="naming-example">
+      <span class="hl-white">[Budget Type]</span> <span class="hl-blue">|</span> <span class="hl-white">[Campaign Type]</span> <span class="hl-blue">|</span> <span class="hl-white">[Product]</span> <span class="hl-blue">|</span> <span class="hl-white">[Margin]</span><br><br>
+      <span class="hl-green">CBO</span> <span class="hl-blue">|</span> <span class="hl-orange">Test+Scale</span> <span class="hl-blue">|</span> <span class="hl-pink">Hydro Flask</span> <span class="hl-blue">|</span> <span class="hl-green">M42%</span>
+    </div>
+
+    <h4>Ad Set Level</h4>
+    <div class="naming-example">
+      <span class="hl-white">[Date]</span> <span class="hl-blue">|</span> <span class="hl-white">[Concept Name]</span> <span class="hl-blue">|</span> <span class="hl-white">[Audience]</span> <span class="hl-blue">|</span> <span class="hl-white">[Geo]</span><br><br>
+      <span class="hl-green">2026-03-08</span> <span class="hl-blue">|</span> <span class="hl-orange">UGC Unboxing</span> <span class="hl-blue">|</span> <span class="hl-pink">Broad</span> <span class="hl-blue">|</span> <span class="hl-green">US</span>
+    </div>
+
+    <h4>Ad Level</h4>
+    <div class="naming-example">
+      <span class="hl-white">[Format]</span> <span class="hl-blue">|</span> <span class="hl-white">[Hook/Angle]</span> <span class="hl-blue">|</span> <span class="hl-white">[Variant]</span><br><br>
+      <span class="hl-green">Video</span> <span class="hl-blue">|</span> <span class="hl-orange">Problem-Solution</span> <span class="hl-blue">|</span> <span class="hl-pink">V1-Blue</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>Campaign Settings Quick Reference</h3>
+    <p style="margin-bottom: 1rem;">Create your campaign in <a href="https://adsmanager.facebook.com/adsmanager/manage/campaigns" target="_blank" style="color: var(--primary); font-weight: 600;">Meta Ads Manager</a>. Use the settings below:</p>
+    <div class="table-wrap">
+      <table>
+        <tr><th>Setting</th><th>Recommended Value</th><th>Why</th></tr>
+        <tr><td>Campaign Objective</td><td><strong>Sales</strong></td><td>Tells Meta to find buyers, not just clickers</td></tr>
+        <tr><td>Conversion Location</td><td><strong>Website</strong></td><td>Single website, not multi-destination</td></tr>
+        <tr><td>Conversion Event</td><td><strong>Purchase</strong></td><td>Optimize for the actual goal, not a proxy event</td></tr>
+        <tr><td>Budget Level</td><td><strong>Campaign Level (CBO)</strong></td><td>Lets Meta distribute to winners</td></tr>
+        <tr><td>Advantage Catalog Ads</td><td><strong>OFF</strong> (for testing campaign)</td><td>Keep control during creative testing</td></tr>
+        <tr><td>Placements</td><td><strong>Advantage+ Placements</strong></td><td>Let Meta optimize across placements (reported 50% lower CPA)</td></tr>
+        <tr><td>Targeting</td><td><strong>Broad</strong> (country + age 18+)</td><td>Andromeda algorithm targets via creative quality</td></tr>
+        <tr><td>Ad Enhancements</td><td><strong>ALL OFF</strong></td><td>Prevents Meta from modifying your tested creative</td></tr>
+        <tr><td>Site Links</td><td><strong>OFF</strong></td><td>Keep traffic focused on your product page</td></tr>
+        <tr><td>Destination URL</td><td><strong>Product page URL</strong></td><td>Not homepage. Direct to the product being advertised</td></tr>
+        <tr><td>CTA Button</td><td><strong>Shop Now</strong></td><td>Highest purchase intent signal for ecommerce</td></tr>
+        <tr><td>Launch Time</td><td><strong>4:00 AM local</strong></td><td>Gives Meta a full day to optimize delivery</td></tr>
+      </table>
+    </div>
+    <p style="margin-top: 1rem; font-size: 0.85rem;">
+      <a href="https://www.facebook.com/business/help/1438417719786914" target="_blank" style="color: var(--gray-600);">Campaign Creation Guide &rarr;</a> &nbsp;|&nbsp;
+      <a href="https://www.facebook.com/business/help/1362234537597370" target="_blank" style="color: var(--gray-600);">Advantage+ Sales Campaign Guide &rarr;</a> &nbsp;|&nbsp;
+      <a href="https://www.facebook.com/business/help/603206453630904" target="_blank" style="color: var(--gray-600);">CBO Best Practices &rarr;</a>
+    </p>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SECTION 3: CREATIVE STRATEGY -->
+<!-- ============================================================ -->
+<section class="section" id="creative">
+  <div class="section-header">
+    <div class="section-number">3</div>
+    <h2 class="section-title">Creative Strategy</h2>
+  </div>
+
+  <div class="highlight-box">
+    <strong>The New Rule:</strong> With Meta's Andromeda algorithm, creative IS targeting. Campaigns with 10-15+ creative variations significantly outperform those with fewer. Your ad creative determines who Meta shows your ads to. Static images still drive 60-70% of ecommerce conversions &mdash; do not abandon them for video only.
+  </div>
+
+  <div class="card">
+    <h3>Ad Format Types & When to Use Each</h3>
+    <div class="table-wrap">
+      <table>
+        <tr>
+          <th>Format</th>
+          <th>Best For</th>
+          <th>Avg Performance</th>
+          <th>Tips</th>
+        </tr>
+        <tr>
+          <td><strong>Static Image</strong></td>
+          <td>Product showcases, offers, lifestyle shots</td>
+          <td>Lowest CPM (~$1.56), but highest CPA (~$28). 60-70% of conversions come from statics</td>
+          <td>Use lifestyle images over white backgrounds. Bold text overlays. 4:5 ratio</td>
+        </tr>
+        <tr>
+          <td><strong>Short-Form Video</strong> (15-30s)</td>
+          <td>Problem-solution, demonstrations, before/after</td>
+          <td>Highest engagement. 20% higher conversions than static in catalog ads</td>
+          <td>Hook in first 1-3 seconds. Black-on-white captions. Product PNG overlays</td>
+        </tr>
+        <tr>
+          <td><strong>UGC (User-Generated)</strong></td>
+          <td>Social proof, testimonials, authentic reviews</td>
+          <td>Highest trust factor. Best for cold audiences</td>
+          <td>Raw/authentic feel beats polished production. Film vertically on phone</td>
+        </tr>
+        <tr>
+          <td><strong>Carousel</strong></td>
+          <td>Multiple products, features, step-by-step</td>
+          <td>0.90% CTR. Lowest CPA (~$15) and highest ROAS across formats</td>
+          <td>First card = hook. Tell a sequential story. End with CTA card</td>
+        </tr>
+        <tr>
+          <td><strong>Collection / DPA</strong></td>
+          <td>Catalog browsing, retargeting, large inventories</td>
+          <td>2-3x higher ROAS for retargeting. Often 60%+ of ecom ad spend</td>
+          <td>Use lifestyle hero image + auto-populated products. Keep catalog accurate</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>Hook Frameworks (The First 3 Seconds)</h3>
+    <p>73% of ecommerce video ads fail within the first 3 seconds. The average scroll speed has increased 41% since 2020 &mdash; you have 0.5 seconds to stop the scroll.</p>
+
+    <div class="grid-2" style="margin-top: 1rem;">
+      <div style="background: var(--gray-100); border-radius: 12px; padding: 1.5rem;">
+        <h4 style="color: var(--primary);">Problem Callout</h4>
+        <p>Lead with the pain point your audience experiences. Create instant recognition.</p>
+        <p style="font-style: italic; color: var(--gray-600);">"Tired of [common frustration]? Here's what nobody tells you..."</p>
+        <p style="font-style: italic; color: var(--gray-600);">"Stop doing [wrong thing] with your [product category]"</p>
+      </div>
+      <div style="background: var(--gray-100); border-radius: 12px; padding: 1.5rem;">
+        <h4 style="color: var(--primary);">Curiosity Gap</h4>
+        <p>Open a question in the viewer's mind that can only be answered by watching.</p>
+        <p style="font-style: italic; color: var(--gray-600);">"I found something that changed my entire [routine/approach]..."</p>
+        <p style="font-style: italic; color: var(--gray-600);">"This is the #1 reason your [X] isn't working..."</p>
+      </div>
+      <div style="background: var(--gray-100); border-radius: 12px; padding: 1.5rem;">
+        <h4 style="color: var(--primary);">Contrarian / Pattern Interrupt</h4>
+        <p>Challenge a widely held belief. Provoke disagreement and engagement.</p>
+        <p style="font-style: italic; color: var(--gray-600);">"Everything you've been told about [X] is wrong"</p>
+        <p style="font-style: italic; color: var(--gray-600);">"I'm a [professional] and I refuse to use [common product]"</p>
+      </div>
+      <div style="background: var(--gray-100); border-radius: 12px; padding: 1.5rem;">
+        <h4 style="color: var(--primary);">Social Proof / Authority</h4>
+        <p>Lead with a result, number, or credibility indicator that demands attention.</p>
+        <p style="font-style: italic; color: var(--gray-600);">"50,000 people switched to this in the last month"</p>
+        <p style="font-style: italic; color: var(--gray-600);">"As a dermatologist, this is the only [product] I recommend"</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>Creative Testing Methodology</h3>
+
+    <div class="grid-3">
+      <div style="background: #E3F2FD; border-radius: 12px; padding: 1.5rem; text-align: center;">
+        <h4 style="color: var(--primary);">Phase 1: Concept Testing</h4>
+        <p><strong>Goal:</strong> Find which creative CONCEPTS resonate</p>
+        <p><strong>Metrics:</strong> CTR, Hook Rate, CPM</p>
+        <p><strong>Duration:</strong> 3-5 days</p>
+        <p><strong>Volume:</strong> 3-5 distinct concepts</p>
+        <p><strong>Budget:</strong> Equal spend per concept</p>
+      </div>
+      <div style="background: #FFF3E0; border-radius: 12px; padding: 1.5rem; text-align: center;">
+        <h4 style="color: #E65100;">Phase 2: Variation Testing</h4>
+        <p><strong>Goal:</strong> Optimize winning concepts</p>
+        <p><strong>Metrics:</strong> CPA, ROAS, CVR</p>
+        <p><strong>Duration:</strong> 5-7 days</p>
+        <p><strong>Volume:</strong> 3-5 variations of top 1-2 concepts</p>
+        <p><strong>Test:</strong> Different hooks, visuals, copy</p>
+      </div>
+      <div style="background: #E8F5E9; border-radius: 12px; padding: 1.5rem; text-align: center;">
+        <h4 style="color: var(--success);">Phase 3: Scale Validation</h4>
+        <p><strong>Goal:</strong> Confirm winners can scale</p>
+        <p><strong>Metrics:</strong> CPA stability at higher spend</p>
+        <p><strong>Duration:</strong> 7-14 days</p>
+        <p><strong>Action:</strong> Graduate to Scale campaign</p>
+        <p><strong>Threshold:</strong> Stable CPA for 3+ days</p>
+      </div>
+    </div>
+
+    <div class="highlight-box" style="margin-top: 1rem;">
+      <strong>Critical Rule:</strong> Do NOT test new creatives against established winners. Legacy ads have accumulated engagement data and social proof, creating an unfair advantage. Test new ads against each other in dedicated testing campaigns.
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>Winning Ad Identification Criteria</h3>
+    <div class="table-wrap">
+      <table>
+        <tr>
+          <th>Metric</th>
+          <th>What It Measures</th>
+          <th>Winner Threshold</th>
+          <th>What To Do If Below</th>
+        </tr>
+        <tr>
+          <td><strong>Hook Rate</strong></td>
+          <td>% who watch 3+ seconds</td>
+          <td>&gt; 30% (great: 40%+)</td>
+          <td>Opening visual or text is weak &mdash; change the hook</td>
+        </tr>
+        <tr>
+          <td><strong>Hold Rate</strong></td>
+          <td>% who continue to 15 seconds</td>
+          <td>&gt; 15-25%</td>
+          <td>Content isn't engaging &mdash; restructure the body/middle</td>
+        </tr>
+        <tr>
+          <td><strong>CTR (all)</strong></td>
+          <td>% who clicked the ad</td>
+          <td>&gt; 1.5% prospecting / &gt; 2.5% retargeting</td>
+          <td>Creative-audience mismatch or weak CTA</td>
+        </tr>
+        <tr>
+          <td><strong>CPA</strong></td>
+          <td>Cost per purchase</td>
+          <td>Below Break-Even CPA</td>
+          <td>Landing page issue or wrong audience clicking</td>
+        </tr>
+        <tr>
+          <td><strong>ROAS</strong></td>
+          <td>Revenue per $1 ad spend</td>
+          <td>Above Target ROAS for 3+ consecutive days</td>
+          <td>Analyze the full funnel &mdash; ad, page, offer</td>
+        </tr>
+      </table>
+    </div>
+
+    <h4>Diagnostic Scenarios</h4>
+    <div class="grid-2" style="margin-top: 1rem;">
+      <div class="highlight-box warning">
+        <strong>High Hook + High CTR + Poor CPA:</strong> Your ads engage and get clicks, but people are not converting. Fix: Check landing page speed, relevance, and checkout flow. Ensure the ad promise matches the landing page experience.
+      </div>
+      <div class="highlight-box success">
+        <strong>Good CPA + Low Hook/Hold:</strong> Creatives are converting but engagement is low. The ad works but has limited reach potential. Fix: Improve creative to unlock broader audiences while maintaining conversion efficiency.
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>Creative Refresh Cadence</h3>
+    <ul>
+      <li><strong>Test new hooks/visuals:</strong> Every 7-10 days</li>
+      <li><strong>Launch new batch of concepts:</strong> Every 2-3 weeks</li>
+      <li><strong>Full creative refresh:</strong> Every 4-6 weeks</li>
+      <li><strong>Minimum new creatives per month:</strong> 5+ (accounts testing fewer see 15% CPA increase month-over-month)</li>
+    </ul>
+    <div class="highlight-box warning">
+      <strong>Fatigue Signal:</strong> When an ad's frequency exceeds 3-4 and CTR drops 20%+, it is time to refresh or retire the creative. The average Meta user sees the same ad 4.2 times over 30 days.
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SECTION 4: LAUNCH SEQUENCE -->
+<!-- ============================================================ -->
+<section class="section" id="launch">
+  <div class="section-header">
+    <div class="section-number">4</div>
+    <h2 class="section-title">Launch Sequence (Step-by-Step)</h2>
+  </div>
+
+  <div class="card">
+    <div class="timeline">
+      <div class="timeline-item">
+        <h4>Days 1-3: Testing Phase (HANDS OFF)</h4>
+        <p><strong>What to do:</strong></p>
+        <ul>
+          <li>Launch campaign at 4:00 AM local time in your target market</li>
+          <li>Do NOT make any changes for the first 48-72 hours</li>
+          <li>The algorithm is in "learning phase" &mdash; volatility is normal</li>
+          <li>Only action allowed: Kill an ad if it spends 1x Break-Even CPA with 0 purchases</li>
+          <li>Monitor but do not optimize. Check metrics once per day max</li>
+        </ul>
+        <div class="highlight-box danger">
+          <strong>Do NOT:</strong> Change budgets, edit ad creative, modify targeting, or duplicate ad sets during the first 72 hours. Any significant edit resets the learning phase.
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <h4>Days 4-7: Analysis Phase</h4>
+        <p><strong>Analysis Timeframe:</strong> Today + Last 3 Days (primary) | Last 7 Days (confirmation)</p>
+        <p><strong>Daily Actions:</strong></p>
+        <ol>
+          <li><strong>Kill underperformers:</strong> Apply kill rules (see Section 5)</li>
+          <li><strong>Identify early winners:</strong> Which ads have purchases at or below target CPA?</li>
+          <li><strong>Check campaign ROAS:</strong> Is the overall campaign ROAS approaching break-even?</li>
+          <li><strong>Note top metrics:</strong> Which concepts have the highest Hook Rate, CTR, and conversion rate?</li>
+          <li><strong>Do NOT scale yet</strong> &mdash; you are still gathering data</li>
+        </ol>
+        <div class="highlight-box">
+          <strong>Decision Point at Day 7:</strong> If zero ads have converted after spending 3-4x Break-Even CPA across the entire campaign, your creative concepts likely need fundamental revision. Go back to creative prep.
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <h4>Week 2: Optimization Phase</h4>
+        <p><strong>Actions:</strong></p>
+        <ol>
+          <li><strong>Kill:</strong> Turn off all ads that have hit kill thresholds</li>
+          <li><strong>Iterate:</strong> Create 3-5 variations of your best-performing concept (new hooks, different visuals, alternate copy)</li>
+          <li><strong>Budget adjust:</strong> Apply scale up/down rules based on campaign ROAS (see Section 5)</li>
+          <li><strong>Launch new ad set:</strong> Add iteration ads as a new ad set in the testing campaign</li>
+          <li><strong>Min/Max spend:</strong> Apply spend controls on ad sets that need throttling or boosting</li>
+        </ol>
+      </div>
+
+      <div class="timeline-item">
+        <h4>Weeks 3-4: Scaling Phase</h4>
+        <p><strong>Requirements to begin scaling:</strong></p>
+        <ul>
+          <li>At least 1-2 ads have maintained ROAS at or above target for 5+ consecutive days</li>
+          <li>Campaign has exited the learning phase (50+ conversions/week)</li>
+          <li>CPA has been stable (not trending upward) for 7+ days</li>
+        </ul>
+        <p><strong>Scaling Actions:</strong></p>
+        <ol>
+          <li><strong>Vertical scale:</strong> Increase campaign budget by 20% every 2-3 days</li>
+          <li><strong>Graduate winners:</strong> Move proven creatives into your Scale / ASC campaign</li>
+          <li><strong>Expand audiences:</strong> Test LAL 1-3% of purchasers in the scaling campaign</li>
+          <li><strong>Refresh pipeline:</strong> Continue launching new creative tests in Campaign 1</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>Weekly Optimization Flow (Ongoing After Launch)</h3>
+    <div class="grid-4">
+      <div style="background: #FFEBEE; border-radius: 10px; padding: 1rem; text-align: center;">
+        <strong style="color: var(--danger);">Monday</strong>
+        <p style="font-size: 0.85rem;">Review weekend data. Kill underperformers. Check 7-day ROAS.</p>
+      </div>
+      <div style="background: #E3F2FD; border-radius: 10px; padding: 1rem; text-align: center;">
+        <strong style="color: var(--primary);">Tuesday-Wednesday</strong>
+        <p style="font-size: 0.85rem;">Create new creative variations. Plan next batch of tests.</p>
+      </div>
+      <div style="background: #FFF3E0; border-radius: 10px; padding: 1rem; text-align: center;">
+        <strong style="color: #E65100;">Thursday</strong>
+        <p style="font-size: 0.85rem;">Launch new test ads. Scale budget on winners. Apply min/max spend.</p>
+      </div>
+      <div style="background: #E8F5E9; border-radius: 10px; padding: 1rem; text-align: center;">
+        <strong style="color: var(--success);">Friday</strong>
+        <p style="font-size: 0.85rem;">Light monitoring. Let weekend traffic flow. No major changes.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SECTION 5: DECISION FRAMEWORK -->
+<!-- ============================================================ -->
+<section class="section" id="decisions">
+  <div class="section-header">
+    <div class="section-number">5</div>
+    <h2 class="section-title">Decision Framework: Kill / Analyze / Scale</h2>
+  </div>
+
+  <div class="highlight-box">
+    <strong>Analysis Timeframe:</strong> All decisions are made using <strong>Today + Last 3 Days</strong> as the primary window, with <strong>Last 7 Days</strong> as confirmation. Never make kill/scale decisions on a single day's data.
+  </div>
+
+  <div class="card">
+    <h3 style="color: var(--danger);">KILL Rules (Ad Level Only)</h3>
+    <p>Turn off individual ads, never entire ad sets or campaigns prematurely.</p>
+
+    <div class="table-wrap">
+      <table>
+        <tr>
+          <th>Rule</th>
+          <th>Condition</th>
+          <th>Action</th>
+        </tr>
+        <tr>
+          <td><strong>Zero Sales Kill</strong></td>
+          <td>Ad spends 1x Break-Even CPA with 0 purchases</td>
+          <td style="color: var(--danger); font-weight: 700;">KILL the ad</td>
+        </tr>
+        <tr>
+          <td><strong>Single Sale Kill</strong></td>
+          <td>Ad gets 1 sale, then spends another full Break-Even CPA without a 2nd sale</td>
+          <td style="color: var(--danger); font-weight: 700;">KILL the ad</td>
+        </tr>
+        <tr>
+          <td><strong>Continued Pattern</strong></td>
+          <td>Same logic continues: each subsequent sale must come within 1x BE CPA of the previous</td>
+          <td style="color: var(--danger); font-weight: 700;">KILL if pattern breaks</td>
+        </tr>
+        <tr>
+          <td><strong>Fatigue Kill</strong></td>
+          <td>Frequency &gt; 3 AND CPA has risen 30%+ above target over 7 days</td>
+          <td style="color: var(--danger); font-weight: 700;">KILL the ad</td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="highlight-box warning">
+      <strong>Example:</strong> If your Break-Even CPA is $25 and an ad has spent $25 with 0 purchases &mdash; kill it. If it gets 1 purchase at $20, it can continue running, but if it then spends another $25 ($45 total) without a 2nd purchase &mdash; kill it.
+    </div>
+  </div>
+
+  <div class="card">
+    <h3 style="color: var(--success);">SCALE Rules (Campaign Level Only)</h3>
+    <p>All budget changes happen at the campaign level for CBO campaigns.</p>
+
+    <div class="table-wrap">
+      <table>
+        <tr>
+          <th>Scenario</th>
+          <th>Condition</th>
+          <th>Action</th>
+        </tr>
+        <tr style="background: #E8F5E9;">
+          <td><strong>SCALE UP (+20%)</strong></td>
+          <td>Campaign ROAS is within 0.2 of Target ROAS<br><em>Example: Target = 2.2, Actual = 2.0+</em></td>
+          <td style="color: var(--success); font-weight: 700;">Increase budget by 20%</td>
+        </tr>
+        <tr>
+          <td><strong>MAINTAIN (No Change)</strong></td>
+          <td>Campaign ROAS is between Break-Even ROAS and Target ROAS<br><em>Example: BE = 1.4, Actual = 1.4 to 2.0</em></td>
+          <td style="font-weight: 700;">Do nothing. Keep running.</td>
+        </tr>
+        <tr style="background: #FFF3E0;">
+          <td><strong>SCALE DOWN (-10%)</strong></td>
+          <td>ROAS below Break-Even by 0.2 or less<br><em>Example: BE = 1.4, Actual = 1.2 to 1.4</em></td>
+          <td style="color: var(--warning); font-weight: 700;">Decrease budget by 10%</td>
+        </tr>
+        <tr style="background: #FFEBEE;">
+          <td><strong>SCALE DOWN (-20%)</strong></td>
+          <td>ROAS below Break-Even by more than 0.2<br><em>Example: BE = 1.4, Actual = below 1.2</em></td>
+          <td style="color: var(--danger); font-weight: 700;">Decrease budget by 20%</td>
+        </tr>
+      </table>
+    </div>
+
+    <p style="margin-top: 1rem;"><strong>Scaling frequency:</strong> You can apply these rules daily. Scale in 20% increments max every 2-3 days. Jumps larger than 30% can reset the learning phase.</p>
+  </div>
+
+  <div class="card">
+    <h3>Ad Set Min/Max Spend Controls (Advanced)</h3>
+    <div class="grid-2">
+      <div>
+        <h4 style="color: var(--success);">When to Set Minimum Spend ($10/day)</h4>
+        <p>Use when an ad has:</p>
+        <ul>
+          <li>2+ purchases with ROAS above Target ROAS</li>
+          <li>But spend is very low ($2-5/day) &mdash; Meta is not allocating enough budget to it</li>
+        </ul>
+        <p><strong>Action:</strong> Go to Ad Set > Budget & Schedule > Ad Set Spending Limits > set minimum to $10/day</p>
+      </div>
+      <div>
+        <h4 style="color: var(--danger);">When to Set Maximum Spend</h4>
+        <p>Use when an ad:</p>
+        <ul>
+          <li>Performed well at low spend ($20-30/day)</li>
+          <li>Meta suddenly increased spend significantly</li>
+          <li>ROAS dropped below Break-Even after the increase</li>
+        </ul>
+        <p><strong>Action:</strong> Set max spend to the daily amount where the ad was performing well</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>When to Iterate vs. When to Start Fresh</h3>
+    <div class="grid-2">
+      <div class="highlight-box success">
+        <strong>Iterate (test variations of the same concept) when:</strong>
+        <ul>
+          <li>A concept shows strong engagement (Hook Rate &gt; 30%, CTR &gt; 1%) but CPA is too high</li>
+          <li>You had 1-2 winning ads from a concept but they fatigued</li>
+          <li>The angle/message resonates but the execution can be improved</li>
+        </ul>
+        <p><strong>How:</strong> Change the hook, swap the visual style, try a different voice/tone, adjust the offer</p>
+      </div>
+      <div class="highlight-box danger">
+        <strong>Start fresh (entirely new concepts) when:</strong>
+        <ul>
+          <li>No ads from a concept generated purchases after 2x campaign daily budget in spend</li>
+          <li>Hook Rates are below 20% across all variations</li>
+          <li>The fundamental message/angle is not resonating</li>
+          <li>All iterations of a concept have been exhausted</li>
+        </ul>
+        <p><strong>How:</strong> Go back to audience research, study new competitor angles, try completely different creative formats</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SECTION 6: KPI BENCHMARKS -->
+<!-- ============================================================ -->
+<section class="section" id="kpis">
+  <div class="section-header">
+    <div class="section-number">6</div>
+    <h2 class="section-title">KPI Benchmarks for Ecommerce</h2>
+  </div>
+
+  <div class="highlight-box">
+    <strong>Important:</strong> These are general ecommerce benchmarks for 2025-2026. Your specific targets should be based on YOUR unit economics (Break-Even CPA, Break-Even ROAS, and Target ROAS). Industry, AOV, and product type significantly affect what "good" looks like for your brand.
+  </div>
+
+  <div class="grid-3" style="margin-bottom: 1.5rem;">
+    <div class="metric-card">
+      <div class="metric-label">CTR (Click-Through Rate)</div>
+      <div class="metric-value">1.5-2.2%</div>
+      <div class="metric-range">Below 1.0% = Weak | 1.0-1.5% = Average | Above 2.0% = Strong</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-label">CPC (Cost Per Click)</div>
+      <div class="metric-value">$0.50-$1.15</div>
+      <div class="metric-range">Above $1.50 = Expensive | $0.70-$1.10 = Average | Below $0.50 = Excellent</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-label">CPM (Cost Per 1K Impressions)</div>
+      <div class="metric-value">$7-$14</div>
+      <div class="metric-range">Above $18 = High | $8-$13 = Normal | Below $6 = Low competition</div>
+    </div>
+  </div>
+
+  <div class="grid-3" style="margin-bottom: 1.5rem;">
+    <div class="metric-card">
+      <div class="metric-label">CPA (Cost Per Purchase)</div>
+      <div class="metric-value">$15-$45</div>
+      <div class="metric-range">Median ecommerce: ~$38. Must be below YOUR Break-Even CPA</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-label">ROAS (Return on Ad Spend)</div>
+      <div class="metric-value">2.0-3.0x</div>
+      <div class="metric-range">Below 1.5x = Losing | 2.0-3.0x = Healthy | Above 4.0x = Excellent</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-label">CVR (Conversion Rate)</div>
+      <div class="metric-value">1.5-3.0%</div>
+      <div class="metric-range">Below 1% = Poor | 1.5-3% = Average | Above 5% = Very strong</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>Benchmark Reference Table (Ecommerce)</h3>
+    <div class="table-wrap">
+      <table>
+        <tr>
+          <th>Metric</th>
+          <th style="color: #E74C3C;">Poor</th>
+          <th style="color: #F39C12;">Average</th>
+          <th style="color: #27AE60;">Good</th>
+          <th style="color: #1877F2;">Excellent</th>
+        </tr>
+        <tr>
+          <td><strong>CTR</strong></td>
+          <td>&lt; 0.8%</td>
+          <td>0.8% - 1.4%</td>
+          <td>1.5% - 2.2%</td>
+          <td>&gt; 2.5%</td>
+        </tr>
+        <tr>
+          <td><strong>CPC</strong></td>
+          <td>&gt; $2.00</td>
+          <td>$1.00 - $2.00</td>
+          <td>$0.50 - $1.00</td>
+          <td>&lt; $0.50</td>
+        </tr>
+        <tr>
+          <td><strong>CPM</strong></td>
+          <td>&gt; $20</td>
+          <td>$12 - $20</td>
+          <td>$7 - $12</td>
+          <td>&lt; $7</td>
+        </tr>
+        <tr>
+          <td><strong>ROAS</strong></td>
+          <td>&lt; 1.5x</td>
+          <td>1.5x - 2.5x</td>
+          <td>2.5x - 4.0x</td>
+          <td>&gt; 4.0x</td>
+        </tr>
+        <tr>
+          <td><strong>CPA</strong></td>
+          <td>&gt; 1.5x BE CPA</td>
+          <td>1x - 1.5x BE CPA</td>
+          <td>At or below BE CPA</td>
+          <td>&lt; 50% of BE CPA</td>
+        </tr>
+        <tr>
+          <td><strong>CVR</strong></td>
+          <td>&lt; 1%</td>
+          <td>1% - 2%</td>
+          <td>2% - 4%</td>
+          <td>&gt; 4%</td>
+        </tr>
+        <tr>
+          <td><strong>Hook Rate</strong></td>
+          <td>&lt; 15%</td>
+          <td>15% - 25%</td>
+          <td>30% - 40%</td>
+          <td>&gt; 45%</td>
+        </tr>
+        <tr>
+          <td><strong>Hold Rate</strong></td>
+          <td>&lt; 8%</td>
+          <td>8% - 15%</td>
+          <td>15% - 25%</td>
+          <td>&gt; 30%</td>
+        </tr>
+        <tr>
+          <td><strong>Frequency (7-day)</strong></td>
+          <td>&gt; 4.0</td>
+          <td>2.5 - 4.0</td>
+          <td>1.5 - 2.5</td>
+          <td>1.0 - 1.5</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>How Metrics Relate to Each Other</h3>
+    <div style="background: var(--gray-100); border-radius: 12px; padding: 1.5rem;">
+      <p><strong>The Metric Chain:</strong> Metrics flow into each other in a sequence. A problem at any point cascades down.</p>
+      <div style="font-family: monospace; background: var(--gray-900); color: #E0E0E0; padding: 1.5rem; border-radius: 10px; text-align: center; margin: 1rem 0; font-size: 0.95rem; line-height: 2;">
+        <span style="color: #64B5F6;">CPM</span> (visibility cost) &rarr;
+        <span style="color: #81C784;">Hook Rate</span> (attention) &rarr;
+        <span style="color: #FFB74D;">CTR</span> (interest) &rarr;
+        <span style="color: #F48FB1;">CPC</span> (traffic cost) &rarr;
+        <span style="color: #CE93D8;">CVR</span> (conversion) &rarr;
+        <span style="color: #EF5350;">CPA</span> (acquisition cost) &rarr;
+        <span style="color: #4CAF50;">ROAS</span> (profitability)
+      </div>
+      <ul style="margin-top: 1rem;">
+        <li><strong>High CPM + Low CTR</strong> = You are paying a premium to reach people who do not engage &rarr; Fix creative or audience</li>
+        <li><strong>Good CTR + High CPC</strong> = People click but competition is high in your niche &rarr; Improve ad relevance score</li>
+        <li><strong>Good CPC + Low CVR</strong> = You drive cheap traffic that does not buy &rarr; Fix landing page, offer, or targeting</li>
+        <li><strong>Good CVR + Low ROAS</strong> = People buy but AOV is too low relative to ad cost &rarr; Increase AOV via bundles/upsells</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>Seasonality & CPM Calendar</h3>
+    <p>Plan your budgets around predictable CPM fluctuations:</p>
+    <div class="table-wrap">
+      <table>
+        <tr>
+          <th>Period</th>
+          <th>CPM Trend</th>
+          <th>Strategy</th>
+        </tr>
+        <tr><td>January</td><td style="color: var(--success);">Lowest CPMs of the year (post-holiday reset)</td><td>Aggressive testing &mdash; your dollar goes furthest</td></tr>
+        <tr><td>February-March</td><td>Low to moderate</td><td>Build your creative library and scale winners</td></tr>
+        <tr><td>April-August</td><td>Moderate, stable</td><td>Steady-state optimization. Prepare Q4 assets</td></tr>
+        <tr><td>September-October</td><td style="color: var(--warning);">Rising (Q4 ramp-up)</td><td>Lock in proven creatives before costs spike</td></tr>
+        <tr><td>November</td><td style="color: var(--danger);">Peak CPMs (+18% avg from Oct)</td><td>Only run proven winners. Pause experiments</td></tr>
+        <tr><td>December</td><td>Declining from Nov peak</td><td>Scale holiday offers. Retargeting focus</td></tr>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SECTION 7: SCALING PLAYBOOK -->
+<!-- ============================================================ -->
+<section class="section" id="scaling">
+  <div class="section-header">
+    <div class="section-number">7</div>
+    <h2 class="section-title">Scaling Playbook</h2>
+  </div>
+
+  <div class="card">
+    <h3>The Scaling Sequence (Do This In Order)</h3>
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-content">
+        <h4>Validate Performance</h4>
+        <p>Before scaling, confirm: consistent daily purchases, stable CPA over 5+ days, ROAS at or above target, campaign has exited learning phase (50+ weekly conversions).</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-content">
+        <h4>Start Vertical (Budget Increases)</h4>
+        <p>Increase campaign budget by 20-30% every 2-3 days. Monitor for 48 hours before the next increase. If CPA spikes, wait 3 days before adjusting further.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-content">
+        <h4>Go Horizontal (Expand Reach)</h4>
+        <p>When vertical scaling shows diminishing returns (first-time impression ratio drops below 30%), expand by testing new audiences, creatives, and placements.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">4</div>
+      <div class="step-content">
+        <h4>Consolidate with ASC</h4>
+        <p>Move proven winners into an Advantage+ Sales Campaign. Set existing customer budget cap (20-30%). Let Meta's full automation optimize delivery.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">5</div>
+      <div class="step-content">
+        <h4>Protect with Guardrails</h4>
+        <p>Set automated rules: pause any ad spending more than 2x target CPA without conversions. Use Cost Cap or ROAS Goal bidding as guardrails during aggressive scaling.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid-2">
+    <div class="card">
+      <h3>Vertical Scaling Tactics</h3>
+      <p><strong>What it is:</strong> Increasing budget on existing winning campaigns.</p>
+      <h4>Rules</h4>
+      <ul>
+        <li>Increase budget by <strong>20-30% max</strong> every 2-3 days</li>
+        <li>Never increase by more than 30% at once (resets learning phase)</li>
+        <li>After each increase, do NOT touch the campaign for 48+ hours</li>
+        <li>If CPA rises 20%+ after a budget increase, roll back to previous budget and wait 3 days</li>
+        <li>Short-term CPA turbulence after increases is normal &mdash; judge after 72 hours, not 24</li>
+      </ul>
+      <h4>When to Stop Vertical Scaling</h4>
+      <ul>
+        <li>CPA consistently rises 30%+ above target despite multiple budget-back adjustments</li>
+        <li>First-time impression ratio drops below 30% (audience is getting saturated)</li>
+        <li>Frequency exceeds 3.5 over a 7-day window</li>
+      </ul>
+
+      <div class="highlight-box">
+        <strong>Alternative Aggressive Approach:</strong> Some advanced media buyers prefer a single 50-100% jump followed by 3 days of zero changes. This avoids the "death by twenty-percent nudges" that restart learning repeatedly. Only recommended for experienced advertisers with sufficient budget to absorb short-term volatility.
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>Horizontal Scaling Tactics</h3>
+      <p><strong>What it is:</strong> Expanding reach through new audiences, creatives, and placements.</p>
+      <h4>Tactics</h4>
+      <ul>
+        <li><strong>New Creatives:</strong> Duplicate winning campaign, swap in new creative variations</li>
+        <li><strong>Broader Audiences:</strong> Test LAL 3-5% (wider than initial 1% lookalikes)</li>
+        <li><strong>New Geos:</strong> Expand to additional countries or regions</li>
+        <li><strong>New Placements:</strong> Test Reels, Stories, Audience Network separately</li>
+        <li><strong>New Angles:</strong> Same product, completely different creative concept/message</li>
+        <li><strong>DPA/DABA:</strong> Launch Dynamic Ads for Broad Audiences to let Meta prospect with your catalog</li>
+      </ul>
+      <h4>Key Rule</h4>
+      <p>When duplicating campaigns for horizontal testing, <strong>change only ONE variable</strong> at a time. This isolates what drives performance. Never change audience AND creative simultaneously.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>Lookalike Expansion Strategy</h3>
+    <div class="table-wrap">
+      <table>
+        <tr>
+          <th>Stage</th>
+          <th>LAL Size</th>
+          <th>Seed Audience</th>
+          <th>When to Use</th>
+        </tr>
+        <tr>
+          <td><strong>Launch</strong></td>
+          <td>Broad (no LAL)</td>
+          <td>N/A &mdash; let Meta target via creative</td>
+          <td>Initial testing. Let Andromeda do its work</td>
+        </tr>
+        <tr>
+          <td><strong>Early Scale</strong></td>
+          <td>1% LAL</td>
+          <td>Purchasers (last 180 days)</td>
+          <td>Once you have 100+ purchases tracked</td>
+        </tr>
+        <tr>
+          <td><strong>Growth</strong></td>
+          <td>1-3% LAL</td>
+          <td>Top 25% by revenue / high AOV customers</td>
+          <td>Scaling phase &mdash; find more high-value buyers</td>
+        </tr>
+        <tr>
+          <td><strong>Aggressive Scale</strong></td>
+          <td>3-5% LAL</td>
+          <td>All purchasers + ATC audiences</td>
+          <td>When 1-3% LALs show fatigue</td>
+        </tr>
+        <tr>
+          <td><strong>Maximum Reach</strong></td>
+          <td>5-10% LAL or Broad</td>
+          <td>Website visitors + engagers</td>
+          <td>Large budgets, proven creative only</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>Creative Refresh Cadence for Scaling</h3>
+    <div class="table-wrap">
+      <table>
+        <tr>
+          <th>Monthly Spend</th>
+          <th>New Creatives / Month</th>
+          <th>Refresh Cycle</th>
+        </tr>
+        <tr>
+          <td>$1,000 - $5,000</td>
+          <td>5-10 new ads</td>
+          <td>Every 3-4 weeks</td>
+        </tr>
+        <tr>
+          <td>$5,000 - $20,000</td>
+          <td>10-20 new ads</td>
+          <td>Every 2-3 weeks</td>
+        </tr>
+        <tr>
+          <td>$20,000 - $100,000</td>
+          <td>20-40 new ads</td>
+          <td>Weekly new batches</td>
+        </tr>
+        <tr>
+          <td>$100,000+</td>
+          <td>40+ new ads</td>
+          <td>Continuous pipeline (daily additions)</td>
+        </tr>
+      </table>
+    </div>
+    <div class="highlight-box warning">
+      <strong>Never Stop Testing:</strong> Accounts that test fewer than 5 new creatives per month see their CPA creep up by an average of 15% month-over-month. Your creative pipeline is your #1 scaling lever.
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SECTION 8: TROUBLESHOOTING -->
+<!-- ============================================================ -->
+<section class="section" id="troubleshooting">
+  <div class="section-header">
+    <div class="section-number">8</div>
+    <h2 class="section-title">Troubleshooting Decision Tree</h2>
+  </div>
+
+  <div class="highlight-box">
+    <strong>How to Use:</strong> Diagnose issues by looking at metrics in sequence. A problem at one level cascades to the next. Start by identifying which metric is off, then follow the corresponding fix path below.
+  </div>
+
+  <!-- HIGH CPM -->
+  <div class="card">
+    <h3 style="color: var(--danger);">Problem: High CPM (&gt; $18-20)</h3>
+    <p>"You are paying too much for visibility"</p>
+
+    <div class="grid-2" style="margin-top: 1rem;">
+      <div>
+        <h4>Diagnose</h4>
+        <ul>
+          <li><strong>Seasonal?</strong> Check if you are in a high-competition period (Q4, BFCM). CPM spikes of 18-20% in November are normal</li>
+          <li><strong>Audience too narrow?</strong> Small audiences = fewer impressions = higher costs</li>
+          <li><strong>Low ad relevance?</strong> Meta charges more to show irrelevant ads</li>
+          <li><strong>High frequency?</strong> If frequency &gt; 3, audience is saturated</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Fix</h4>
+        <ul>
+          <li>Broaden your audience (remove interest targeting, widen age range)</li>
+          <li>Refresh creatives &mdash; new ads get lower CPMs during ramp-up</li>
+          <li>Enable Advantage+ Placements to access cheaper inventory</li>
+          <li>Test new ad formats (Reels placement often has lower CPMs)</li>
+          <li>During Q4, accept higher CPMs and focus on improving CVR to maintain ROAS</li>
+          <li>If all else fails, reduce budget and wait for CPMs to normalize</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- LOW CTR -->
+  <div class="card">
+    <h3 style="color: var(--danger);">Problem: Low CTR (&lt; 1.0%)</h3>
+    <p>"People see your ad but do not click"</p>
+
+    <div class="grid-2" style="margin-top: 1rem;">
+      <div>
+        <h4>Diagnose</h4>
+        <ul>
+          <li><strong>Weak hook?</strong> Check Hook Rate &mdash; if &lt; 20%, the first 3 seconds fail to capture attention</li>
+          <li><strong>Poor creative quality?</strong> Blurry images, low production value, unclear message</li>
+          <li><strong>Wrong audience?</strong> Your ad may be reaching people who are not your target customer</li>
+          <li><strong>Offer not compelling?</strong> No urgency, no clear value proposition</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Fix</h4>
+        <ul>
+          <li>Test 3-5 new hooks on the same ad body (Problem Callout, Curiosity Gap, Social Proof)</li>
+          <li>Use bold captions (black-on-white) for silent viewers</li>
+          <li>Add product PNG overlays and graphic CTAs</li>
+          <li>Try UGC-style content (raw, authentic feel outperforms polished ads)</li>
+          <li>Make the CTA crystal clear &mdash; what do you want them to do?</li>
+          <li>If Hook Rate is fine but CTR is low, the problem is in the ad body, not the opening</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- HIGH CPC -->
+  <div class="card">
+    <h3 style="color: var(--danger);">Problem: High CPC (&gt; $1.50)</h3>
+    <p>"Each click costs too much to be profitable"</p>
+
+    <div class="grid-2" style="margin-top: 1rem;">
+      <div>
+        <h4>Diagnose</h4>
+        <ul>
+          <li><strong>Low CTR driving up CPC?</strong> CPC = CPM / (CTR x 10). If fewer people click, each click costs more</li>
+          <li><strong>Competitive niche?</strong> Finance, insurance, B2B naturally have higher CPCs</li>
+          <li><strong>Wrong optimization event?</strong> Optimizing for traffic produces cheap clicks; optimizing for purchases produces expensive but higher-quality clicks</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Fix</h4>
+        <ul>
+          <li>Fix CTR first &mdash; CPC almost always drops when CTR improves</li>
+          <li>Try Carousel format (lowest CPA across formats at ~$15)</li>
+          <li>Test broader audiences to reduce auction competition</li>
+          <li>Use Advantage+ Placements to find cheaper click inventory</li>
+          <li>Focus on CPA/ROAS instead &mdash; a $2 CPC that converts at 5% is better than a $0.50 CPC that converts at 0.5%</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- LOW CVR -->
+  <div class="card">
+    <h3 style="color: var(--danger);">Problem: Low Conversion Rate (&lt; 1%)</h3>
+    <p>"People click but do not buy"</p>
+
+    <div class="grid-2" style="margin-top: 1rem;">
+      <div>
+        <h4>Diagnose</h4>
+        <ul>
+          <li><strong>Landing page mismatch?</strong> The ad promises something the landing page does not deliver</li>
+          <li><strong>Slow page speed?</strong> Every second of load time reduces conversions by 7%</li>
+          <li><strong>Price shock?</strong> Customer expected one price, found another</li>
+          <li><strong>Trust issues?</strong> No reviews, no social proof, no guarantees on the page</li>
+          <li><strong>Mobile broken?</strong> 80%+ of Meta traffic is mobile &mdash; test the mobile checkout flow</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Fix</h4>
+        <ul>
+          <li>Ensure ad creative matches landing page (same imagery, same offer, same language)</li>
+          <li>Optimize page speed (target &lt; 3 seconds load time)</li>
+          <li>Add trust elements: reviews, UGC, guarantee badges, clear return policy</li>
+          <li>Simplify checkout &mdash; reduce steps, enable guest checkout, add express pay</li>
+          <li>Test different landing pages (product page vs. dedicated lander)</li>
+          <li>Check pixel/CAPI &mdash; ensure Purchase event fires correctly on the thank-you page</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- AD FATIGUE -->
+  <div class="card">
+    <h3 style="color: var(--warning);">Problem: Ad Fatigue</h3>
+    <p>"Performance degrades over time despite no changes"</p>
+
+    <div class="grid-2" style="margin-top: 1rem;">
+      <div>
+        <h4>Signals</h4>
+        <ul>
+          <li>Frequency &gt; 3.0 over 7 days</li>
+          <li>CTR declining 20%+ week-over-week</li>
+          <li>CPM creeping up gradually (audience fatigue)</li>
+          <li>CPA rising 15-20% over 2 weeks</li>
+          <li>First-time impression ratio dropping below 30%</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Fix</h4>
+        <ul>
+          <li><strong>Quick fix:</strong> Swap the hook while keeping the same body/message</li>
+          <li><strong>Medium fix:</strong> Create new visual variations of the same concept</li>
+          <li><strong>Full fix:</strong> Launch entirely new creative concepts</li>
+          <li>Do NOT re-upload the same ad &mdash; swap hooks or reframe the value proposition instead</li>
+          <li>Broaden the audience to reach fresh users</li>
+          <li>Reduce budget temporarily to decrease frequency, then scale back up with fresh creative</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- MASTER DIAGNOSTIC -->
+  <div class="card">
+    <h3>Master Diagnostic Flowchart</h3>
+    <div class="table-wrap">
+      <table>
+        <tr>
+          <th>If You See...</th>
+          <th>The Problem Is...</th>
+          <th>Priority Fix</th>
+        </tr>
+        <tr>
+          <td>High CPM + Low CTR</td>
+          <td>Ad relevance &mdash; wrong audience or weak creative</td>
+          <td>New creative + broader audience</td>
+        </tr>
+        <tr>
+          <td>Normal CPM + Low CTR</td>
+          <td>Creative &mdash; ad is being shown but not engaging</td>
+          <td>Test new hooks, formats, and angles</td>
+        </tr>
+        <tr>
+          <td>Good CTR + High CPC</td>
+          <td>Competition &mdash; your niche is expensive</td>
+          <td>Improve relevance score, test new placements</td>
+        </tr>
+        <tr>
+          <td>Good CTR + High CPA</td>
+          <td>Post-click &mdash; landing page or offer problem</td>
+          <td>Optimize landing page, checkout, and offer</td>
+        </tr>
+        <tr>
+          <td>Good CPA + Rising Frequency</td>
+          <td>Audience saturation &mdash; fatigue incoming</td>
+          <td>Refresh creative and/or expand audience</td>
+        </tr>
+        <tr>
+          <td>Good Metrics + Low Spend</td>
+          <td>Algorithm constraint &mdash; ad set is not getting budget</td>
+          <td>Set minimum spend or duplicate to new campaign</td>
+        </tr>
+        <tr>
+          <td>ROAS below BE + All metrics OK</td>
+          <td>Unit economics &mdash; AOV too low or margins too thin</td>
+          <td>Increase AOV (bundles, upsells) or reduce COGS</td>
+        </tr>
+        <tr>
+          <td>Sudden performance drop</td>
+          <td>Technical &mdash; pixel/CAPI issue or algorithm reset</td>
+          <td>Check Events Manager for errors, verify tracking</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>Emergency Playbook: When Nothing Works</h3>
+    <p>If your campaign has spent 3-5x your daily budget with zero profitable results after following all the above:</p>
+    <ol>
+      <li><strong>Pause everything.</strong> Do not keep spending.</li>
+      <li><strong>Audit your offer:</strong> Is the product-market fit validated? Do people actually want this at this price?</li>
+      <li><strong>Audit your landing page:</strong> Load it on mobile. Would YOU buy from this page as a stranger?</li>
+      <li><strong>Audit your tracking:</strong> Is the Purchase event firing? Check <a href="https://business.facebook.com/events_manager2" target="_blank" style="color: var(--primary);">Events Manager</a> for errors.</li>
+      <li><strong>Study competitors:</strong> Use <a href="https://www.facebook.com/ads/library/" target="_blank" style="color: var(--primary);">Meta Ad Library</a> to see what is currently running in your niche. Adapt proven approaches.</li>
+      <li><strong>Create 5+ completely new concepts</strong> with different angles, formats, and hooks.</li>
+      <li><strong>Relaunch</strong> with the 2-campaign structure and follow this framework from the start.</li>
+    </ol>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- DAILY ANALYSIS CHECKLIST -->
+<!-- ============================================================ -->
+<section class="section">
+  <div class="section-header">
+    <div class="section-number">&#10003;</div>
+    <h2 class="section-title">Daily Analysis Checklist</h2>
+  </div>
+
+  <div class="card">
+    <div class="grid-2">
+      <div>
+        <h3>Every Day (5-10 minutes)</h3>
+        <ol>
+          <li>Set timeframe to <strong>Today + Last 3 Days</strong></li>
+          <li>Kill any ads that hit kill rules (ad level)</li>
+          <li>Check campaign ROAS against your targets</li>
+          <li>Apply Scale UP / MAINTAIN / Scale DOWN rules (campaign level)</li>
+          <li>Apply min/max spend controls if needed (ad set level)</li>
+          <li>Note any ads approaching fatigue (frequency &gt; 2.5)</li>
+        </ol>
+      </div>
+      <div>
+        <h3>Every Week (30-60 minutes)</h3>
+        <ol>
+          <li>Review 7-day performance trends for confirmation</li>
+          <li>Identify winning concepts vs. losing concepts</li>
+          <li>Create 3-5 new creative variations of winners</li>
+          <li>Plan and launch next batch of test ads</li>
+          <li>Graduate proven winners to Scale campaign</li>
+          <li>Check frequency and refresh fatigued creatives</li>
+          <li>Update your KPI spreadsheet with actuals</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</section>
+
+</div><!-- /.container -->
+
+<!-- ============================================================ -->
+<!-- FOOTER -->
+<!-- ============================================================ -->
+<div class="footer">
+  <p><strong>Meta Ads Master Framework</strong> &mdash; The Complete Ecommerce Advertising System</p>
+  <p style="margin-top: 0.5rem;">Built on data from 2025-2026 industry benchmarks. Updated March 2026.</p>
+  <p style="margin-top: 1rem; font-size: 0.8rem;">Sources include data from Triple Whale, WordStream, WebFX, SuperAds, Meta Business Help Center, and leading agency playbooks.</p>
+</div>
+
+<script>
+  // Sticky TOC active state
+  const sections = document.querySelectorAll('.section[id]');
+  const tocLinks = document.querySelectorAll('.toc-link');
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        tocLinks.forEach(link => link.classList.remove('active'));
+        const activeLink = document.querySelector(`.toc-link[href="#${entry.target.id}"]`);
+        if (activeLink) activeLink.classList.add('active');
+      }
+    });
+  }, { threshold: 0.2, rootMargin: '-80px 0px -60% 0px' });
+
+  sections.forEach(section => observer.observe(section));
+
+  // Smooth scroll for TOC links
+  tocLinks.forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      const target = document.querySelector(link.getAttribute('href'));
+      if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+</script>
+
+</body>
+</html>
