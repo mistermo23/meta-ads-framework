@@ -228,10 +228,20 @@
     padding: 1.2rem 1.5rem;
     margin-bottom: 1.5rem;
     font-size: 0.95rem;
-    max-width: 70ch;
+    max-width: 75ch;
   }
-  .card > p, .card > h3 + p {
-    max-width: 70ch;
+  /* Text readability — 75 characters per line max (excludes grids & tables) */
+  .card > p,
+  .card > h3 + p,
+  .card > ul,
+  .card > ol,
+  .card > h3,
+  .card > h4,
+  .step-block > div,
+  .step-block > div p,
+  .step-block > div ul,
+  .step-block > div ol {
+    max-width: 75ch;
   }
   .highlight-box.warning {
     background: #FEF3C7;
