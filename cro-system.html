@@ -1,0 +1,1530 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CRO &amp; High-Converting Websites &mdash; The Brand Builders Conversion System</title>
+<style>
+  :root {
+    --primary: #059669;
+    --primary-dark: #047857;
+    --primary-light: #34D399;
+    --accent: #F59E0B;
+    --accent-light: #FCD34D;
+    --success: #10B981;
+    --danger: #EF4444;
+    --warning: #F59E0B;
+    --blue: #3B82F6;
+    --purple: #7C3AED;
+    --pink: #EC4899;
+    --red-type: #DC2626;
+    --yellow-type: #D97706;
+    --dark: #0F1A14;
+    --gray-900: #1A2E22;
+    --gray-800: #2D4A38;
+    --gray-700: #4A6B56;
+    --gray-600: #6B8C78;
+    --gray-400: #A3BFAE;
+    --gray-200: #D5E5DB;
+    --gray-100: #EFF5F1;
+    --white: #FFFFFF;
+    --bg: #F5FAF7;
+    --card-shadow: 0 2px 16px rgba(5,150,105,0.08);
+    --section-gap: 3rem;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    background: var(--bg);
+    color: var(--dark);
+    line-height: 1.7;
+    font-size: 16px;
+  }
+
+  /* Text readability — 75 chars per line max everywhere */
+  p, li, ul, ol {
+    max-width: 75ch;
+  }
+
+  /* ===== HERO ===== */
+  .hero {
+    background: linear-gradient(135deg, #0F1A14 0%, #0D3320 40%, #059669 100%);
+    color: var(--white);
+    padding: 4rem 2rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -50%; left: -50%; width: 200%; height: 200%;
+    background: radial-gradient(circle at 30% 70%, rgba(5,150,105,0.15) 0%, transparent 50%),
+                radial-gradient(circle at 70% 30%, rgba(245,158,11,0.1) 0%, transparent 50%);
+    animation: pulse 8s ease-in-out infinite;
+  }
+  @keyframes pulse { 0%,100% { transform: scale(1); } 50% { transform: scale(1.05); } }
+  .hero-content { position: relative; z-index: 1; max-width: 900px; margin: 0 auto; }
+  .hero-badge {
+    display: inline-block;
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.25);
+    border-radius: 50px;
+    padding: 0.4rem 1.2rem;
+    font-size: 0.85rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    backdrop-filter: blur(4px);
+  }
+  .hero h1 { font-size: 2.8rem; font-weight: 800; line-height: 1.2; margin-bottom: 1rem; letter-spacing: -0.02em; }
+  .hero p { font-size: 1.15rem; opacity: 0.9; max-width: 650px; margin: 0 auto 2rem; }
+  .hero-stats { display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; }
+  .hero-stat {
+    text-align: center; padding: 1rem;
+    background: rgba(255,255,255,0.1); border-radius: 12px;
+    min-width: 140px; backdrop-filter: blur(4px);
+  }
+  .hero-stat-number { font-size: 1.6rem; font-weight: 800; display: block; }
+  .hero-stat-label { font-size: 0.8rem; opacity: 0.8; text-transform: uppercase; letter-spacing: 0.05em; }
+
+  /* ===== NAV ===== */
+  .toc-bar {
+    background: var(--white);
+    border-bottom: 1px solid var(--gray-200);
+    padding: 1rem 2rem;
+    position: sticky; top: 0; z-index: 100;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  }
+  .toc-inner {
+    max-width: 1200px; margin: 0 auto;
+    display: flex; gap: 0.4rem;
+    overflow-x: auto; scrollbar-width: none;
+  }
+  .toc-inner::-webkit-scrollbar { display: none; }
+  .toc-link {
+    white-space: nowrap; padding: 0.5rem 0.9rem; border-radius: 8px;
+    font-size: 0.82rem; font-weight: 600;
+    color: var(--gray-600); text-decoration: none;
+    transition: all 0.2s; border: 1px solid transparent;
+  }
+  .toc-link:hover { background: var(--gray-100); color: var(--primary); }
+  .toc-link.active { background: var(--primary); color: var(--white); }
+
+  /* ===== MAIN ===== */
+  .container { max-width: 1200px; margin: 0 auto; padding: 2rem; }
+
+  /* ===== SECTIONS ===== */
+  .section { margin-bottom: var(--section-gap); scroll-margin-top: 80px; }
+  .section-header {
+    display: flex; align-items: center; gap: 1rem;
+    margin-bottom: 1.5rem; padding-bottom: 1rem;
+    border-bottom: 3px solid var(--primary);
+  }
+  .section-number {
+    background: var(--primary); color: var(--white);
+    width: 44px; height: 44px; border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 800; font-size: 1.1rem; flex-shrink: 0;
+  }
+  .section-title { font-size: 1.6rem; font-weight: 700; }
+
+  /* ===== CARDS ===== */
+  .card {
+    background: var(--white); border-radius: 16px; padding: 2rem;
+    margin-bottom: 1.5rem; box-shadow: var(--card-shadow);
+    border: 1px solid var(--gray-200);
+  }
+  .card h3 { font-size: 1.2rem; margin-bottom: 0.8rem; display: flex; align-items: center; gap: 0.5rem; }
+  .card h4 { font-size: 1rem; margin-bottom: 0.5rem; color: var(--primary-dark); margin-top: 1.2rem; }
+  .card p, .card li { color: var(--gray-700); line-height: 1.8; }
+  .card ul, .card ol { padding-left: 1.4rem; margin: 0.5rem 0; }
+  .card li { margin-bottom: 0.4rem; }
+
+  /* ===== GRIDS ===== */
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+  .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+  .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
+  @media (max-width: 768px) {
+    .grid-2, .grid-3 { grid-template-columns: 1fr; }
+    .grid-4 { grid-template-columns: 1fr 1fr; }
+    .hero h1 { font-size: 2rem; }
+    .hero-stats { gap: 1.5rem; }
+    .toc-bar { padding: 0.5rem 1rem; }
+    .card { padding: 1.5rem; }
+    .vs-container { grid-template-columns: 1fr; }
+    .vs-divider { text-align: center; }
+    .personality-grid { grid-template-columns: 1fr; }
+    .page-flow { flex-direction: column; }
+    .page-flow-arrow { transform: rotate(90deg); }
+  }
+
+  /* ===== HIGHLIGHT BOXES ===== */
+  .highlight-box {
+    background: linear-gradient(135deg, #ECFDF5 0%, #D1FAE5 100%);
+    border-left: 4px solid var(--primary);
+    border-radius: 0 12px 12px 0;
+    padding: 1.2rem 1.5rem;
+    margin: 1rem 0;
+    max-width: 75ch;
+  }
+  .highlight-box.warning {
+    background: linear-gradient(135deg, #FFFBEB 0%, #FEF3C7 100%);
+    border-left-color: var(--warning);
+  }
+  .highlight-box.danger {
+    background: linear-gradient(135deg, #FEF2F2 0%, #FEE2E2 100%);
+    border-left-color: var(--danger);
+  }
+  .highlight-box.blue {
+    background: linear-gradient(135deg, #EFF6FF 0%, #DBEAFE 100%);
+    border-left-color: var(--blue);
+  }
+  .highlight-box.purple {
+    background: linear-gradient(135deg, #F5F3FF 0%, #EDE9FE 100%);
+    border-left-color: var(--purple);
+  }
+  .highlight-box strong { color: var(--dark); }
+
+  /* ===== TAGS ===== */
+  .tag {
+    display: inline-block; padding: 0.2rem 0.6rem;
+    border-radius: 6px; font-size: 0.75rem; font-weight: 600; margin: 0.15rem;
+  }
+  .tag-green { background: #D1FAE5; color: #065F46; }
+  .tag-blue { background: #DBEAFE; color: #1E40AF; }
+  .tag-amber { background: #FEF3C7; color: #92400E; }
+  .tag-red { background: #FEE2E2; color: #991B1B; }
+  .tag-purple { background: #EDE9FE; color: #5B21B6; }
+  .tag-pink { background: #FCE7F3; color: #9D174D; }
+
+  /* ===== COMPARISON ===== */
+  .vs-container {
+    display: grid; grid-template-columns: 1fr auto 1fr;
+    gap: 1rem; align-items: stretch; margin: 1.5rem 0;
+  }
+  .vs-box { border-radius: 14px; padding: 1.5rem; }
+  .vs-box.wrong { background: #FEF2F2; border: 2px solid #FECACA; }
+  .vs-box.right { background: #ECFDF5; border: 2px solid #A7F3D0; }
+  .vs-divider { font-size: 1.3rem; font-weight: 800; color: var(--gray-400); display: flex; align-items: center; justify-content: center; }
+
+  /* ===== STEP BLOCKS ===== */
+  .step-block { display: flex; gap: 1.2rem; align-items: flex-start; margin-bottom: 1.8rem; }
+  .step-number {
+    min-width: 44px; height: 44px;
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    color: white; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 800; font-size: 1.1rem; flex-shrink: 0;
+  }
+  .step-number.amber { background: linear-gradient(135deg, var(--accent), #D97706); }
+  .step-number.red { background: linear-gradient(135deg, #EF4444, #DC2626); }
+  .step-number.blue { background: linear-gradient(135deg, #3B82F6, #2563EB); }
+
+  /* ===== PERSONALITY GRID ===== */
+  .personality-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin: 1.5rem 0;
+  }
+  .personality-card {
+    border-radius: 16px; padding: 1.8rem;
+    border: 2px solid; position: relative;
+  }
+  .personality-card.type-blue { border-color: #3B82F6; background: #EFF6FF; }
+  .personality-card.type-green { border-color: #10B981; background: #ECFDF5; }
+  .personality-card.type-red { border-color: #EF4444; background: #FEF2F2; }
+  .personality-card.type-yellow { border-color: #F59E0B; background: #FFFBEB; }
+  .personality-card h4 { margin-top: 0; font-size: 1.1rem; margin-bottom: 0.6rem; }
+  .personality-card .type-label {
+    display: inline-block; padding: 0.2rem 0.7rem; border-radius: 6px;
+    font-size: 0.75rem; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.05em; margin-bottom: 0.8rem; color: white;
+  }
+  .type-blue .type-label { background: #3B82F6; }
+  .type-green .type-label { background: #10B981; }
+  .type-red .type-label { background: #EF4444; }
+  .type-yellow .type-label { background: #F59E0B; }
+
+  /* ===== PAGE FLOW ===== */
+  .page-flow {
+    display: flex; align-items: center; justify-content: center;
+    gap: 0.5rem; flex-wrap: wrap; margin: 1.5rem 0;
+  }
+  .page-flow-step {
+    background: var(--white); border: 2px solid var(--gray-200);
+    border-radius: 12px; padding: 0.8rem 1.2rem;
+    text-align: center; font-size: 0.85rem; font-weight: 600; min-width: 120px;
+  }
+  .page-flow-step.active {
+    border-color: var(--primary);
+    background: linear-gradient(135deg, #ECFDF5, #D1FAE5);
+    color: var(--primary-dark);
+  }
+  .page-flow-arrow { font-size: 1.2rem; color: var(--gray-400); }
+
+  /* ===== CHECKLIST ===== */
+  .checklist { list-style: none; padding: 0; }
+  .checklist li {
+    padding: 0.7rem 0 0.7rem 2rem;
+    position: relative;
+    border-bottom: 1px solid var(--gray-200);
+  }
+  .checklist li:last-child { border-bottom: none; }
+  .checklist li::before {
+    content: '';
+    position: absolute; left: 0; top: 50%; transform: translateY(-50%);
+    width: 20px; height: 20px;
+    border: 2px solid var(--gray-400); border-radius: 4px;
+  }
+
+  /* ===== TABLES ===== */
+  .table-wrap { overflow-x: auto; margin: 1rem 0; border-radius: 12px; border: 1px solid var(--gray-200); }
+  table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+  th {
+    background: var(--primary); color: white;
+    padding: 0.8rem 1rem; text-align: left; font-weight: 600;
+  }
+  td { padding: 0.8rem 1rem; border-bottom: 1px solid var(--gray-200); }
+  tr:nth-child(even) td { background: var(--gray-100); }
+
+  /* ===== FUNNEL ===== */
+  .funnel {
+    display: flex; flex-direction: column; align-items: center;
+    gap: 0; margin: 1.5rem auto; max-width: 600px;
+  }
+  .funnel-level {
+    padding: 0.9rem 1.5rem; text-align: center;
+    font-weight: 600; font-size: 0.9rem; color: white; position: relative;
+  }
+  .funnel-level:nth-child(1) { background: var(--gray-600); width: 100%; border-radius: 12px 12px 0 0; }
+  .funnel-level:nth-child(2) { background: var(--blue); width: 85%; }
+  .funnel-level:nth-child(3) { background: var(--accent); width: 70%; }
+  .funnel-level:nth-child(4) { background: var(--primary); width: 55%; }
+  .funnel-level:nth-child(5) { background: var(--primary-dark); width: 40%; border-radius: 0 0 12px 12px; }
+  .funnel-label { display: block; font-size: 0.75rem; font-weight: 400; opacity: 0.85; margin-top: 0.15rem; }
+
+  /* ===== FOOTER ===== */
+  .footer {
+    background: var(--dark); color: var(--gray-400);
+    text-align: center; padding: 2.5rem 1rem; font-size: 0.9rem;
+  }
+
+  a { color: var(--primary); }
+</style>
+</head>
+<body>
+
+<!-- ===== HERO ===== -->
+<div class="hero">
+  <div class="hero-content">
+    <div class="hero-badge">Brand Builders Academy &mdash; Conversion System</div>
+    <h1>CRO &amp; High-Converting Websites</h1>
+    <p>95% of purchase decisions are subconscious. Win the implicit judgment in the first 3 seconds &mdash; and every dollar you spend on ads works harder.</p>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <span class="hero-stat-number">95%</span>
+        <span class="hero-stat-label">Decisions are subconscious</span>
+      </div>
+      <div class="hero-stat">
+        <span class="hero-stat-number">4 Types</span>
+        <span class="hero-stat-label">Buyer personality compass</span>
+      </div>
+      <div class="hero-stat">
+        <span class="hero-stat-number">5 Stages</span>
+        <span class="hero-stat-label">Customer awareness levels</span>
+      </div>
+      <div class="hero-stat">
+        <span class="hero-stat-number">6 Pages</span>
+        <span class="hero-stat-label">Complete store playbook</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== NAV ===== -->
+<nav class="toc-bar">
+  <div class="toc-inner">
+    <a href="#foundation" class="toc-link">1. Foundation</a>
+    <a href="#psychology" class="toc-link">2. Psychology</a>
+    <a href="#personality" class="toc-link">3. Personality Types</a>
+    <a href="#awareness" class="toc-link">4. Awareness</a>
+    <a href="#copywriting" class="toc-link">5. Copywriting</a>
+    <a href="#ux" class="toc-link">6. UX &amp; Design</a>
+    <a href="#pages" class="toc-link">7. Page Playbooks</a>
+    <a href="#checkout" class="toc-link">8. Checkout &amp; Cart</a>
+    <a href="#ads-connection" class="toc-link">9. Ads &harr; CRO</a>
+    <a href="#audit" class="toc-link">10. Audit Checklist</a>
+    <a href="#design-team" class="toc-link">11. Design Guidelines</a>
+  </div>
+</nav>
+
+<div class="container">
+
+<!-- ============================================================ -->
+<!-- SECTION 1: FOUNDATION -->
+<!-- ============================================================ -->
+<div id="foundation" class="section">
+  <div class="section-header">
+    <div class="section-number">1</div>
+    <h2 class="section-title">The CRO Foundation</h2>
+  </div>
+
+  <div class="card">
+    <h3>Why CRO Matters More Than More Traffic</h3>
+    <p>Most brands throw money at ads to get more visitors. The profitable brands fix the website first so every visitor is worth more. A 1% increase in conversion rate on a store doing $100K/month can mean $25K+ more per year &mdash; without spending a single extra dollar on ads.</p>
+
+    <div class="highlight-box" style="margin-top:1rem;">
+      <strong>The core truth:</strong> Your ad campaign's ROAS ceiling is set by your website's conversion rate. The best ad in the world sends traffic to a page that either converts or doesn't. CRO is what unlocks ad profitability.
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>The 6 Core Principles</h3>
+    <div class="grid-2" style="margin-top:1rem;">
+      <div style="padding:1rem; background:var(--gray-100); border-radius:10px;">
+        <strong>95% Subconscious</strong>
+        <p style="font-size:0.85rem; margin-top:0.3rem;">Purchase decisions are made by System 1 &mdash; fast, automatic, emotional. Design and copy must win the implicit judgment before rational thinking begins.</p>
+      </div>
+      <div style="padding:1rem; background:var(--gray-100); border-radius:10px;">
+        <strong>Emotions Sell, Logic Justifies</strong>
+        <p style="font-size:0.85rem; margin-top:0.3rem;">Lead with emotional triggers. Give facts after the decision has been made emotionally so the buyer can rationalize it to themselves and others.</p>
+      </div>
+      <div style="padding:1rem; background:var(--gray-100); border-radius:10px;">
+        <strong>Sell the Transformation</strong>
+        <p style="font-size:0.85rem; margin-top:0.3rem;">Never sell the product. Always sell what owning it changes about their life, confidence, relationships, or status. The product behind the product.</p>
+      </div>
+      <div style="padding:1rem; background:var(--gray-100); border-radius:10px;">
+        <strong>Keep Visitors in System 1</strong>
+        <p style="font-size:0.85rem; margin-top:0.3rem;">Any friction, confusion, or unanswered question pushes visitors into System 2 critical thinking and kills conversion. Cognitive ease is your friend.</p>
+      </div>
+      <div style="padding:1rem; background:var(--gray-100); border-radius:10px;">
+        <strong>Research Before Writing</strong>
+        <p style="font-size:0.85rem; margin-top:0.3rem;">Customer surveys, reviews, and voice-of-customer data must inform every word. Copy based on assumptions fails. Copy based on exact customer language converts.</p>
+      </div>
+      <div style="padding:1rem; background:var(--gray-100); border-radius:10px;">
+        <strong>FURs Framework</strong>
+        <p style="font-size:0.85rem; margin-top:0.3rem;">Every piece of copy must address at least one Fear, Uncertainty, or Risk of the target buyer. If you're not resolving a FUR, you're not converting.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>System 1 vs System 2 Thinking</h3>
+    <div class="vs-container">
+      <div class="vs-box right">
+        <h4 style="color:#059669; margin-top:0;">System 1 &mdash; Converts</h4>
+        <ul style="font-size:0.9rem;">
+          <li>Fast, automatic, emotional</li>
+          <li>Drives 95% of purchase decisions</li>
+          <li>Responds to familiar design patterns</li>
+          <li>Activated by simple copy and clear visuals</li>
+          <li>Feels effortless &mdash; visitor stays engaged</li>
+        </ul>
+      </div>
+      <div class="vs-divider">vs</div>
+      <div class="vs-box wrong">
+        <h4 style="color:#DC2626; margin-top:0;">System 2 &mdash; Kills Conversion</h4>
+        <ul style="font-size:0.9rem;">
+          <li>Slow, rational, deliberate</li>
+          <li>Activates when something feels "off"</li>
+          <li>Triggered by confusion or friction</li>
+          <li>Makes visitors question, compare, hesitate</li>
+          <li>High energy &mdash; visitor looks for exit</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SECTION 2: PSYCHOLOGY -->
+<!-- ============================================================ -->
+<div id="psychology" class="section">
+  <div class="section-header">
+    <div class="section-number">2</div>
+    <h2 class="section-title">Consumer Psychology Triggers</h2>
+  </div>
+
+  <div class="card">
+    <h3>Attention &amp; Cognitive Ease</h3>
+    <p>The first 5 seconds decide everything. Above the fold must instantly communicate what it is, who it's for, and why it matters.</p>
+    <ul style="margin-top:0.8rem;">
+      <li><strong>Cognitive Ease:</strong> Familiar design, short sentences, 5th-grade reading level, no contradictory info. More minimalist = more trust.</li>
+      <li><strong>Curiosity Gap:</strong> Hint at surprising outcome without revealing it. Only works if the reader has baseline knowledge of the topic.</li>
+      <li><strong>Dopamine Trigger:</strong> Releases when visitor connects the offer to a real-life situation they recognize. Use storytelling and specific scenarios.</li>
+      <li><strong>Benefit Repetition:</strong> Repeat 2&ndash;3 core benefits throughout the page using different sentences. Mere exposure effect compounds trust.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>Loss Aversion &amp; Scarcity</h3>
+    <p>Losing something hurts <strong>twice as much</strong> as gaining the same thing feels good. This is the most powerful purchase motivator available.</p>
+    <div class="grid-2" style="margin-top:1rem;">
+      <div style="padding:1rem; background:#FEF2F2; border-radius:10px; border-left:3px solid #EF4444;">
+        <strong style="color:#991B1B;">Frame as Loss</strong>
+        <p style="font-size:0.85rem; margin-top:0.3rem;">"Don't miss your $5 saving" &mdash; frames the discount as something they'll lose if they don't act.</p>
+      </div>
+      <div style="padding:1rem; background:#ECFDF5; border-radius:10px; border-left:3px solid #10B981;">
+        <strong style="color:#065F46;">Scarcity Tactics</strong>
+        <p style="font-size:0.85rem; margin-top:0.3rem;">Stock bars ("Only 12% remaining"), countdown timers, inventory messages ("3 left, 20 people viewing"). Don't fake it &mdash; that destroys trust.</p>
+      </div>
+    </div>
+    <div class="highlight-box warning" style="margin-top:1rem;">
+      <strong>Coupon code warning:</strong> A visible empty coupon field sends people to Google to find a code. Hide it by default. Only show when a discount is active or as a collapsed accordion.
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>Social Proof &amp; Trust</h3>
+    <ul>
+      <li><strong>Cheerleader Effect:</strong> Show multiple testimonial faces together, walls of reviews, not single isolated reviews. Objects appear more attractive in groups.</li>
+      <li><strong>Single Detailed Testimonial:</strong> One emotional 5-star review with full name, photo, and specific outcome beats 25 generic reviews.</li>
+      <li><strong>Allow Negative Reviews:</strong> A 4.5 average is more credible than 5.0. Perfect scores signal fake.</li>
+      <li><strong>Base Rate Reframing:</strong> Use the most favorable base. "99% of active customers give us 5 stars" beats "80% of all customers rate us highly."</li>
+      <li><strong>Mere Exposure Effect:</strong> Show the product repeatedly throughout the page &mdash; hero, lifestyle shots, video, use-case sections, upsell, footer. Each view increases positive perception.</li>
+      <li><strong>Trust Badges:</strong> Payment logos (PayPal, Visa, Mastercard, Klarna) in footer, product page, cart drawer, and checkout.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>Pricing Psychology</h3>
+    <div class="grid-3" style="margin-top:0.5rem;">
+      <div style="padding:1rem; background:var(--gray-100); border-radius:10px;">
+        <strong>Price Anchor</strong>
+        <p style="font-size:0.85rem; margin-top:0.3rem;">First number seen becomes the reference. Show crossed-out original price before sale price. Any large number nearby works as anchor.</p>
+      </div>
+      <div style="padding:1rem; background:var(--gray-100); border-radius:10px;">
+        <strong>Charm Pricing</strong>
+        <p style="font-size:0.85rem; margin-top:0.3rem;">Prices ending in 9 increase sales ~24%. $1,499 feels dramatically cheaper than $1,500. Exception: luxury uses round numbers.</p>
+      </div>
+      <div style="padding:1rem; background:var(--gray-100); border-radius:10px;">
+        <strong>Price Formatting</strong>
+        <p style="font-size:0.85rem; margin-top:0.3rem;">Write $89 not $89.00. Shorter representation feels smaller. For subscriptions, use price sandwich: "$1.50/day" beats "$547/year."</p>
+      </div>
+      <div style="padding:1rem; background:var(--gray-100); border-radius:10px;">
+        <strong>Decoy Effect</strong>
+        <p style="font-size:0.85rem; margin-top:0.3rem;">Three-tier pricing: middle option pre-selected and badged "Most Popular." Bottom intentionally unattractive, top extravagant. Middle wins.</p>
+      </div>
+      <div style="padding:1rem; background:var(--gray-100); border-radius:10px;">
+        <strong>Magnitude Priming</strong>
+        <p style="font-size:0.85rem; margin-top:0.3rem;">Unrelated large numbers near the price make it feel smaller. "869 reviews" displayed larger than "$89" makes the price shrink perceptually.</p>
+      </div>
+      <div style="padding:1rem; background:var(--gray-100); border-radius:10px;">
+        <strong>Veblen Effect</strong>
+        <p style="font-size:0.85rem; margin-top:0.3rem;">For status goods, higher price increases demand. Higher price = higher perceived quality. Price higher and tell a compelling quality story.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>Convincing &amp; Closing Triggers</h3>
+    <ul>
+      <li><strong>Foot in the Door:</strong> Small commitment leads to bigger commitment. Email opt-in &rarr; tripwire &rarr; core offer &rarr; upsell. Each micro-conversion increases the next.</li>
+      <li><strong>Door in the Face:</strong> Lead with outrageous ask, follow with real ask which now feels reasonable. Premium bundle at top, individual items feel like bargains below.</li>
+      <li><strong>Yes Street:</strong> Chain 3&ndash;4 yes questions targeting specific problems, then place the CTA immediately after. Works in copy, email, and advertorials.</li>
+      <li><strong>Commitment &amp; Consistency:</strong> Once someone makes a small decision, they seek reasons to stay consistent. "Learn more" as first CTA beats "Buy now" for cold audiences.</li>
+      <li><strong>Diderot Effect:</strong> After buying, customers want complementary products to complete the set. The highest-leverage cross-sell moment is immediately post-purchase.</li>
+      <li><strong>Post-Decision Rationalization:</strong> After buying, send a founder email praising the purchase and reminding them of benefits. Reduces returns and builds loyalty before the product arrives.</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SECTION 3: PERSONALITY TYPES -->
+<!-- ============================================================ -->
+<div id="personality" class="section">
+  <div class="section-header">
+    <div class="section-number">3</div>
+    <h2 class="section-title">The 4 Buyer Personality Types</h2>
+  </div>
+
+  <div class="card">
+    <h3>The Motive Compass</h3>
+    <p>Every audience maps to one or more personality types driven by core hormones. Identifying the dominant type determines tone, language, visuals, and copy approach for everything you produce. The stronger you stay in one positioning, the higher the conversion.</p>
+
+    <div class="highlight-box" style="margin-top:1rem;">
+      <strong>How to identify your audience:</strong> (1) Look at the product category. (2) Mine customer language from reviews, surveys, and emails. (3) Look at competitor ads and what tone is winning.
+    </div>
+  </div>
+
+  <div class="personality-grid">
+    <div class="personality-card type-blue">
+      <span class="type-label">Blue &mdash; The Thinker</span>
+      <h4 style="color:#1E40AF;">Cortisol | Security &amp; Reason</h4>
+      <p style="font-size:0.85rem;">Analytical, skeptical, data-driven. Needs all facts before buying. Engineers, researchers, finance types.</p>
+      <h4 style="color:#1E40AF; font-size:0.9rem;">Marketing Rules</h4>
+      <ul style="font-size:0.82rem;">
+        <li>Zero hype, zero exaggeration, serious tone</li>
+        <li>Lead with numbers, data, evidence, guarantees</li>
+        <li>Longer detailed text is fine &mdash; they will read it</li>
+        <li>Away-from motivation: risks eliminated, losses prevented</li>
+        <li>Never use lowball pricing or hidden costs</li>
+      </ul>
+      <p style="font-size:0.82rem; margin-top:0.5rem;"><strong>CTA style:</strong> "Analyze your options" &bull; "See all specifications" &bull; "Get the complete guide"</p>
+    </div>
+
+    <div class="personality-card type-green">
+      <span class="type-label">Green &mdash; The Keeper</span>
+      <h4 style="color:#065F46;">Oxytocin | Connection &amp; Harmony</h4>
+      <p style="font-size:0.85rem;">Relationship-driven, empathetic, values-led. Environmentalists, parents, community builders.</p>
+      <h4 style="color:#065F46; font-size:0.9rem;">Marketing Rules</h4>
+      <ul style="font-size:0.82rem;">
+        <li>Soft marketing, zero pressure, zero fear tactics</li>
+        <li>Address them personally and warmly</li>
+        <li>Build trust through relationship before asking</li>
+        <li>Focus on people, not objects</li>
+        <li>Never use scarcity or aggressive urgency</li>
+      </ul>
+      <p style="font-size:0.82rem; margin-top:0.5rem;"><strong>CTA style:</strong> "Join our community" &bull; "Start your journey" &bull; "Help us make a difference"</p>
+    </div>
+
+    <div class="personality-card type-red">
+      <span class="type-label">Red &mdash; The Doer</span>
+      <h4 style="color:#991B1B;">Testosterone | Status &amp; Results</h4>
+      <p style="font-size:0.85rem;">Action-oriented, competitive, status-driven. Entrepreneurs, athletes, high achievers.</p>
+      <h4 style="color:#991B1B; font-size:0.9rem;">Marketing Rules</h4>
+      <ul style="font-size:0.82rem;">
+        <li>Direct, tougher marketing &mdash; get to the point</li>
+        <li>Towards motivation: gains, achievements, results</li>
+        <li>Use scarcity and urgency aggressively</li>
+        <li>Focus on objects, status symbols, outcomes</li>
+        <li>Give choices between packages, never binary</li>
+      </ul>
+      <p style="font-size:0.82rem; margin-top:0.5rem;"><strong>CTA style:</strong> "Get started now" &bull; "Secure your spot" &bull; "Claim your results"</p>
+    </div>
+
+    <div class="personality-card type-yellow">
+      <span class="type-label">Yellow &mdash; The Entertainer</span>
+      <h4 style="color:#92400E;">Dopamine | Freedom &amp; Creativity</h4>
+      <p style="font-size:0.85rem;">Fun-loving, spontaneous, expressive. Artists, travelers, influencers, creatives.</p>
+      <h4 style="color:#92400E; font-size:0.9rem;">Marketing Rules</h4>
+      <ul style="font-size:0.82rem;">
+        <li>Easy, fun, light &mdash; never heavy or serious</li>
+        <li>Conversational tone, emojis OK, lots of color</li>
+        <li>Towards motivation: possibilities and freedom</li>
+        <li>Focus on people and experiences over objects</li>
+        <li>Emphasize uniqueness and self-expression</li>
+      </ul>
+      <p style="font-size:0.82rem; margin-top:0.5rem;"><strong>CTA style:</strong> "Do your thing" &bull; "Start exploring" &bull; "Live your best life now"</p>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SECTION 4: AWARENESS STAGES -->
+<!-- ============================================================ -->
+<div id="awareness" class="section">
+  <div class="section-header">
+    <div class="section-number">4</div>
+    <h2 class="section-title">The 5 Awareness Stages</h2>
+  </div>
+
+  <div class="card">
+    <h3>Match Copy to Where the Traffic Actually Is</h3>
+    <p>Running Stage 4 copy to cold Stage 1 traffic is one of the most expensive mistakes in ecommerce. Every traffic source has an awareness level &mdash; your copy must meet them there.</p>
+
+    <div class="highlight-box danger" style="margin-top:1rem;">
+      <strong>The #1 CRO mistake:</strong> Writing product-aware copy (stage 4) for cold Meta ad traffic that's only at stage 1&ndash;2. The visitor doesn't even know they have a problem yet, and you're showing them a product page.
+    </div>
+  </div>
+
+  <div class="funnel">
+    <div class="funnel-level">Stage 1: Unaware <span class="funnel-label">Doesn't know they have a problem</span></div>
+    <div class="funnel-level">Stage 2: Problem Aware <span class="funnel-label">Knows the problem, not the solution</span></div>
+    <div class="funnel-level">Stage 3: Solution Aware <span class="funnel-label">Knows solutions exist, not yours</span></div>
+    <div class="funnel-level">Stage 4: Product Aware <span class="funnel-label">Knows your product, hasn't bought</span></div>
+    <div class="funnel-level">Stage 5: Most Aware <span class="funnel-label">Has tried &amp; failed, highest skepticism</span></div>
+  </div>
+
+  <div class="card">
+    <h3>Stage-by-Stage Copy Approach</h3>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Stage</th>
+            <th>Traffic Type</th>
+            <th>Copy Approach</th>
+            <th>Example Opening</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>1. Unaware</strong></td>
+            <td>Cold top of funnel</td>
+            <td>Hypnotic speech that gently surfaces the problem</td>
+            <td>"Maybe you know this too..."</td>
+          </tr>
+          <tr>
+            <td><strong>2. Problem Aware</strong></td>
+            <td>Cold awareness</td>
+            <td>Lead with possibility &mdash; open the door</td>
+            <td>"Yes, it is actually possible to..."</td>
+          </tr>
+          <tr>
+            <td><strong>3. Solution Aware</strong></td>
+            <td>Warm, researching</td>
+            <td>Give the mechanism and steps</td>
+            <td>"3 steps to finally fix..."</td>
+          </tr>
+          <tr>
+            <td><strong>4. Product Aware</strong></td>
+            <td>Retargeting, email</td>
+            <td>Remove friction, offer support</td>
+            <td>"I will help you implement this"</td>
+          </tr>
+          <tr>
+            <td><strong>5. Most Aware</strong></td>
+            <td>Previous customers</td>
+            <td>Address failed attempts, new mechanism</td>
+            <td>"Have you tried X but couldn't stick?"</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SECTION 5: COPYWRITING -->
+<!-- ============================================================ -->
+<div id="copywriting" class="section">
+  <div class="section-header">
+    <div class="section-number">5</div>
+    <h2 class="section-title">Copywriting Frameworks</h2>
+  </div>
+
+  <div class="card">
+    <h3>The 5 Core Formulas</h3>
+    <div class="grid-2" style="margin-top:0.5rem;">
+      <div style="padding:1.2rem; background:#ECFDF5; border-radius:12px; border:1px solid #A7F3D0;">
+        <strong style="color:#059669;">PAS &mdash; Problem, Agitate, Solve</strong>
+        <p style="font-size:0.85rem; margin-top:0.4rem;">Name the exact pain. Go deeper &mdash; connect to identity, emotions, consequences. Then present the product as the inevitable answer.</p>
+        <p style="font-size:0.8rem; margin-top:0.3rem; color:var(--gray-600);"><em>Best for: emotional products with clear pain, cold traffic</em></p>
+      </div>
+      <div style="padding:1.2rem; background:#EFF6FF; border-radius:12px; border:1px solid #BFDBFE;">
+        <strong style="color:#2563EB;">AIDA &mdash; Attention, Interest, Desire, Action</strong>
+        <p style="font-size:0.85rem; margin-top:0.4rem;">Stop them with a bold claim. Deepen curiosity. Connect solution to their want. Clear direct CTA.</p>
+        <p style="font-size:0.8rem; margin-top:0.3rem; color:var(--gray-600);"><em>Best for: general purpose, works across most formats</em></p>
+      </div>
+      <div style="padding:1.2rem; background:#FFFBEB; border-radius:12px; border:1px solid #FDE68A;">
+        <strong style="color:#D97706;">BAB &mdash; Before, After, Bridge</strong>
+        <p style="font-size:0.85rem; margin-top:0.4rem;">Describe the painful current situation. Paint the desired future. Show how the product bridges the gap.</p>
+        <p style="font-size:0.8rem; margin-top:0.3rem; color:var(--gray-600);"><em>Best for: transformation products, clean narrative</em></p>
+      </div>
+      <div style="padding:1.2rem; background:#F5F3FF; border-radius:12px; border:1px solid #DDD6FE;">
+        <strong style="color:#7C3AED;">4Ps &mdash; Picture, Promise, Proof, Push</strong>
+        <p style="font-size:0.85rem; margin-top:0.4rem;">Paint a vivid scene. Make a bold guarantee. Back it with testimonials and data. Aggressive CTA with urgency.</p>
+        <p style="font-size:0.8rem; margin-top:0.3rem; color:var(--gray-600);"><em>Best for: high-ticket, trust-dependent offers</em></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>Headline Rules</h3>
+    <ul>
+      <li>Lead with biggest benefit or sharpest pain &mdash; never with product name</li>
+      <li>Specific beats vague: "Fix the one thing making your room look cheap" beats "Upgrade your home"</li>
+      <li>Under 10 words ideal for above the fold</li>
+      <li>Never start with "we" or "our" &mdash; start with "you," a question, or a provocative statement</li>
+      <li>Headline and hero image must tell the same story</li>
+      <li>Match headline tone to buyer personality type</li>
+    </ul>
+
+    <h4>Headline Framework Examples</h4>
+    <div class="grid-3" style="margin-top:0.5rem;">
+      <div style="padding:0.8rem; background:var(--gray-100); border-radius:8px; font-size:0.85rem;">
+        <strong>Curiosity Gap</strong><br>"She almost returned it. Then she slept on it one night."
+      </div>
+      <div style="padding:0.8rem; background:var(--gray-100); border-radius:8px; font-size:0.85rem;">
+        <strong>Problem Trance</strong><br>"Tired of rugs that slide, bunch, and ruin your floors?"
+      </div>
+      <div style="padding:0.8rem; background:var(--gray-100); border-radius:8px; font-size:0.85rem;">
+        <strong>Transformation</strong><br>"From chaotic room to designer space. One rug changes everything."
+      </div>
+      <div style="padding:0.8rem; background:var(--gray-100); border-radius:8px; font-size:0.85rem;">
+        <strong>Ego Labeling</strong><br>"For homeowners who refuse to settle for almost."
+      </div>
+      <div style="padding:0.8rem; background:var(--gray-100); border-radius:8px; font-size:0.85rem;">
+        <strong>Yes Street</strong><br>"Have you ever walked into a room and immediately felt calm?"
+      </div>
+      <div style="padding:0.8rem; background:var(--gray-100); border-radius:8px; font-size:0.85rem;">
+        <strong>Social Proof</strong><br>"9,000 customers finally fixed the one thing their room was missing."
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>CTA System</h3>
+    <p>The CTA is the conversion moment. Must be direct, elegant, and completely free of doubt. No ifs, no whens, no maybes. Never just say "buy now" or "submit."</p>
+    <div class="grid-2" style="margin-top:1rem;">
+      <div style="padding:1rem; background:#FEF2F2; border-radius:10px;">
+        <strong style="color:#991B1B;">Weak CTAs</strong>
+        <ul style="font-size:0.85rem;">
+          <li>"Submit"</li>
+          <li>"Buy now"</li>
+          <li>"Click here"</li>
+          <li>"Learn more" (as primary CTA)</li>
+        </ul>
+      </div>
+      <div style="padding:1rem; background:#ECFDF5; border-radius:10px;">
+        <strong style="color:#065F46;">Strong CTAs</strong>
+        <ul style="font-size:0.85rem;">
+          <li>"Add to Cart &mdash; Ships Tomorrow"</li>
+          <li>"Yes, I want to transform my skin"</li>
+          <li>"Save $X by enrolling now"</li>
+          <li>"Secure your spot &mdash; only 3 left"</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>Common Copywriting Mistakes</h3>
+    <ul>
+      <li><strong>Writing for yourself:</strong> Always ask "what's in it for them?"</li>
+      <li><strong>Features over benefits:</strong> Take one step further &mdash; what does this feature mean for their life?</li>
+      <li><strong>Too complicated:</strong> 5th-grade reading level. Max 15&ndash;20 words per sentence.</li>
+      <li><strong>Wrong personality type:</strong> Mismatch between copy tone and audience type kills conversion instantly.</li>
+      <li><strong>No tension:</strong> Monotone copy loses attention. Vary sentence length and energy.</li>
+      <li><strong>Writing before researching:</strong> Customer language first, copy second. Always.</li>
+    </ul>
+    <div class="highlight-box warning" style="margin-top:1rem;">
+      <strong>Weak words to cut:</strong> help, try, believe, could, maybe, potentially. And: overusing I, we, me. The customer doesn't care about you.
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SECTION 6: UX & DESIGN -->
+<!-- ============================================================ -->
+<div id="ux" class="section">
+  <div class="section-header">
+    <div class="section-number">6</div>
+    <h2 class="section-title">UX &amp; Design Laws</h2>
+  </div>
+
+  <div class="card">
+    <h3>The 6 Gestalt Laws of Conversion Design</h3>
+    <p>Visitors get a whole feeling instantly, then zoom in on individual elements afterward. There is no middle ground &mdash; layouts are perceived as harmonious or inharmonious at first glance.</p>
+
+    <div class="grid-3" style="margin-top:1rem;">
+      <div style="padding:1.2rem; background:var(--gray-100); border-radius:12px;">
+        <strong>1. Figure &amp; Ground</strong>
+        <p style="font-size:0.82rem; margin-top:0.3rem;">Important elements sit visually forward. Add box shadows to CTAs. High contrast between product and background.</p>
+      </div>
+      <div style="padding:1.2rem; background:var(--gray-100); border-radius:12px;">
+        <strong>2. Similarity</strong>
+        <p style="font-size:0.82rem; margin-top:0.3rem;">One CTA color, one shape, one size &mdash; everywhere across every page. Consistent design trains visitors to navigate without thinking.</p>
+      </div>
+      <div style="padding:1.2rem; background:var(--gray-100); border-radius:12px;">
+        <strong>3. Proximity</strong>
+        <p style="font-size:0.82rem; margin-top:0.3rem;">Elements placed closer together are perceived as belonging together. Group price, rating, and CTA tightly. White space signals where groups end.</p>
+      </div>
+      <div style="padding:1.2rem; background:var(--gray-100); border-radius:12px;">
+        <strong>4. Unity / Closure</strong>
+        <p style="font-size:0.82rem; margin-top:0.3rem;">Use alternating backgrounds to signal sections. Never mix content types within a visual zone. Above the fold = one complete impression.</p>
+      </div>
+      <div style="padding:1.2rem; background:var(--gray-100); border-radius:12px;">
+        <strong>5. Continuity</strong>
+        <p style="font-size:0.82rem; margin-top:0.3rem;">Eye follows lines and flows. Page should create a natural journey: headline &rarr; benefits &rarr; proof &rarr; CTA. Progress bars guide momentum.</p>
+      </div>
+      <div style="padding:1.2rem; background:var(--gray-100); border-radius:12px;">
+        <strong>6. Common Destiny</strong>
+        <p style="font-size:0.82rem; margin-top:0.3rem;">Elements that move together = one group. Hover animations, accordions, progressive disclosure. Show only what's needed at each moment.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>Image Psychology</h3>
+    <div class="grid-2" style="margin-top:0.5rem;">
+      <div>
+        <ul>
+          <li><strong>Show product in use:</strong> Customers instantly imagine themselves using it. Lifestyle beats sterile white backgrounds.</li>
+          <li><strong>People smiling:</strong> Happy expressions transfer positive emotion unconsciously. Genuine expressions outperform posed shots.</li>
+          <li><strong>Left-to-right scanning:</strong> Product on the left, CTA and details on the right. Work with the natural Western reading pattern.</li>
+          <li><strong>Golden ratio positioning:</strong> Don't center the product exactly. Position in the left or right third for visual tension.</li>
+        </ul>
+      </div>
+      <div>
+        <ul>
+          <li><strong>Contrast with background:</strong> Dark product on light background or vice versa. Without contrast the product gets lost.</li>
+          <li><strong>Bokeh effect:</strong> Blur the background to isolate the product. Creates premium aesthetic, directs full attention to the product.</li>
+          <li><strong>Reveal, don't conceal:</strong> Show the product doing what it does. Visual proof of the benefit beats any claim in copy.</li>
+          <li><strong>Vampire effect warning:</strong> Models too attractive or revealing steal attention from the product. Models should enhance, not overshadow.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>Key UX Principles</h3>
+    <ul>
+      <li><strong>Hick's Law:</strong> More choices = longer decision = higher abandonment. Max 5 product variants. Break complex decisions into steps.</li>
+      <li><strong>First Impression Rule:</strong> You cannot reason your way out of a bad first impression. The subconscious verdict is made in milliseconds.</li>
+      <li><strong>Minimalism:</strong> The more minimalist a homepage, the more cognitive ease and trust it promotes. Remove anything that doesn't serve conversion.</li>
+      <li><strong>Progress Psychology:</strong> Progress bars reduce abandonment. People have a strong drive to finish things they've started (Zeigarnik effect).</li>
+      <li><strong>Don't make them do math:</strong> Show old price, new price, and exact savings. Never make the customer calculate anything.</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SECTION 7: PAGE PLAYBOOKS -->
+<!-- ============================================================ -->
+<div id="pages" class="section">
+  <div class="section-header">
+    <div class="section-number">7</div>
+    <h2 class="section-title">Page-by-Page Playbooks</h2>
+  </div>
+
+  <div class="card">
+    <h3>The Conversion Journey</h3>
+    <p>Every page in your store has a specific job. Here's the flow a visitor takes and what each page must accomplish:</p>
+    <div class="page-flow" style="margin-top:1rem;">
+      <div class="page-flow-step active">Homepage</div>
+      <div class="page-flow-arrow">&rarr;</div>
+      <div class="page-flow-step">Collection</div>
+      <div class="page-flow-arrow">&rarr;</div>
+      <div class="page-flow-step active">PDP</div>
+      <div class="page-flow-arrow">&rarr;</div>
+      <div class="page-flow-step">Cart</div>
+      <div class="page-flow-arrow">&rarr;</div>
+      <div class="page-flow-step">Checkout</div>
+      <div class="page-flow-arrow">&rarr;</div>
+      <div class="page-flow-step">Thank You</div>
+    </div>
+    <p style="font-size:0.85rem; color:var(--gray-600); text-align:center; margin-top:0.5rem;">Green = highest optimization leverage points</p>
+  </div>
+
+  <!-- HOMEPAGE -->
+  <div class="card">
+    <h3>Homepage</h3>
+    <p><strong>Goal:</strong> Capture attention, communicate positioning, qualify the visitor, and direct them to the right product in seconds.</p>
+
+    <h4>Above the Fold (The 5-Second Test)</h4>
+    <ul>
+      <li>Headline: biggest benefit or sharpest problem, never product or brand name</li>
+      <li>Subheadline: expand on the promise, add specificity or social proof</li>
+      <li>Hero image: product in use or the transformation &mdash; lifestyle always beats product-only</li>
+      <li>Primary CTA visible without scrolling &mdash; "Shop [Collection]" beats "Buy Now" for cold traffic</li>
+      <li>Announcement bar: free shipping threshold, current offer, or core brand USP</li>
+    </ul>
+
+    <h4>Below the Fold</h4>
+    <ul>
+      <li>Trust signals: customer count, review count, years in business, press logos</li>
+      <li>3 benefit icons with short explanations</li>
+      <li>Yes Street sequence: 3&ndash;4 yes questions followed by CTA</li>
+      <li>Testimonial wall with photos, names, specific outcomes</li>
+      <li>Collection or product showcase sorted by bestselling (never by newest or cheapest)</li>
+    </ul>
+  </div>
+
+  <!-- COLLECTION PAGE -->
+  <div class="card">
+    <h3>Collection Page</h3>
+    <p><strong>Goal:</strong> Help visitors find the right product quickly and build confidence before clicking through.</p>
+    <ul>
+      <li>Clear category structure with intuitive subcategories</li>
+      <li>Visible filtering and sorting &mdash; default: best selling or relevance</li>
+      <li>Never show cheapest products first (ruins price anchor)</li>
+      <li>Product cards: lifestyle image primary, star rating, review count, "Best Seller" badge on top performers</li>
+      <li>Collection headline with ego labeling: "For homeowners who care what their home feels like"</li>
+    </ul>
+  </div>
+
+  <!-- PDP -->
+  <div class="card">
+    <h3>Product Detail Page (PDP)</h3>
+    <p><strong>Goal:</strong> Build desire, answer every question, eliminate every objection, and close the sale. The PDP is a complete sales argument &mdash; nothing is decoration.</p>
+
+    <h4>Hero Section</h4>
+    <ul>
+      <li>Images: lifestyle first, product-only second, in-use third, detail fourth</li>
+      <li>Show product from multiple angles including being used by a person</li>
+      <li>Product title: benefit-driven, not technical code</li>
+      <li>Star rating and review count immediately below title</li>
+      <li>3&ndash;5 benefit bullets hitting core FURs</li>
+    </ul>
+
+    <h4>Pricing &amp; Bundles</h4>
+    <ul>
+      <li>Anchor price crossed out, then sale price. Show dollar amount saved.</li>
+      <li>Max 3&ndash;5 variants (Hick's Law). Bundles in 3 tiers with middle pre-selected.</li>
+      <li>Scarcity indicator: stock level, people viewing, units remaining</li>
+    </ul>
+
+    <h4>Add to Cart Zone</h4>
+    <ul>
+      <li>CTA contrasts sharply with page (figure/ground law) with box shadow</li>
+      <li>CTA with meaning: "Add to Cart &mdash; Ships Tomorrow"</li>
+      <li>Trust badges + payment logos adjacent to CTA</li>
+      <li>Express checkout (Shop Pay, Apple Pay, PayPal) directly beneath</li>
+    </ul>
+
+    <h4>Below-the-Fold Sections</h4>
+    <ul>
+      <li><strong>Description:</strong> Feature &rarr; Benefit &rarr; FUR format. Lead with transformation.</li>
+      <li><strong>Reviews:</strong> Filterable, with photos, names, specific outcomes. Feature one detailed testimonial.</li>
+      <li><strong>FAQ:</strong> 5&ndash;7 most common pre-purchase objections as accordion.</li>
+      <li><strong>Cross-sells:</strong> "Complete the set" framing, max 3&ndash;4 products.</li>
+      <li><strong>Sticky bar:</strong> Appears after original CTA scrolls out of view.</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SECTION 8: CHECKOUT & CART -->
+<!-- ============================================================ -->
+<div id="checkout" class="section">
+  <div class="section-header">
+    <div class="section-number">8</div>
+    <h2 class="section-title">Cart, Checkout &amp; Thank You</h2>
+  </div>
+
+  <div class="card">
+    <h3>Cart Drawer Optimization</h3>
+    <ul>
+      <li><strong>Trust reinforcement:</strong> "Free shipping over $X," "30-day returns," "Secure checkout" visible in cart</li>
+      <li><strong>Commitment message:</strong> "Great choice &mdash; your order ships tomorrow" (commitment &amp; consistency principle)</li>
+      <li><strong>One cross-sell max:</strong> "Customers who bought this also added..." (Diderot effect)</li>
+      <li><strong>Progress bar:</strong> "You're $X away from free shipping" with visual bar (gamification + AOV driver)</li>
+      <li><strong>Coupon field:</strong> Hidden by default. Only show when discount is active.</li>
+      <li><strong>Express checkout:</strong> Shop Pay, Apple Pay, PayPal above main checkout button</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>Top Checkout Abandonment Reasons</h3>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Reason</th>
+            <th>% of Abandonment</th>
+            <th>Fix</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Unexpected additional costs</td>
+            <td><strong>48%</strong></td>
+            <td>Show all costs before checkout &mdash; on PDP and in cart</td>
+          </tr>
+          <tr>
+            <td>Mandatory account registration</td>
+            <td><strong>25%</strong></td>
+            <td>Always offer guest checkout, never force signup</td>
+          </tr>
+          <tr>
+            <td>Delivery not fast enough</td>
+            <td>&mdash;</td>
+            <td>Show estimated delivery on product page and cart</td>
+          </tr>
+          <tr>
+            <td>Lack of trust / missing payment logos</td>
+            <td>&mdash;</td>
+            <td>Payment logos everywhere, store benefits in checkout</td>
+          </tr>
+          <tr>
+            <td>Checkout too complex</td>
+            <td>&mdash;</td>
+            <td>Follow standard Shopify conventions, reduce fields</td>
+          </tr>
+          <tr>
+            <td>Unsatisfactory returns policy</td>
+            <td>&mdash;</td>
+            <td>State 30-day guarantee, free returns, 7-day refund clearly</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>Checkout Optimization Tactics</h3>
+    <ul>
+      <li>Progress bar at top: Address &rarr; Shipping &rarr; Payment</li>
+      <li>Combine first and last name into one field</li>
+      <li>Enable autocomplete for address fields</li>
+      <li>Inline validation: green checkmark on correct, red highlight on errors in real time</li>
+      <li>Store benefit reminders inside checkout: guarantee, free shipping, easy returns</li>
+      <li>Display all payment method logos</li>
+      <li>Hide coupon field unless a code is active</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>Thank You Page</h3>
+    <p><strong>Goal:</strong> Reinforce the decision, prevent buyer's remorse, plant the seed for repeat purchase.</p>
+    <ul>
+      <li><strong>Confirmation:</strong> Clear warm message, order summary with images, estimated delivery date</li>
+      <li><strong>Post-decision praise:</strong> "You just made a great choice" + remind them of 2&ndash;3 benefits they'll experience</li>
+      <li><strong>Cross-sell:</strong> "Complete your experience" &mdash; this is the highest-conversion cross-sell moment in the entire funnel</li>
+      <li><strong>Community:</strong> Welcome to the customer base, invite social sharing or referral</li>
+      <li><strong>Referral seed:</strong> "Share with a friend and you both get X"</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SECTION 9: ADS CONNECTION -->
+<!-- ============================================================ -->
+<div id="ads-connection" class="section">
+  <div class="section-header">
+    <div class="section-number">9</div>
+    <h2 class="section-title">How CRO Connects to Ad Campaigns</h2>
+  </div>
+
+  <div class="card">
+    <h3>The Ads &harr; CRO Feedback Loop</h3>
+    <p>Your ad campaign and your website are not separate systems. They are one continuous persuasion sequence. The ad makes a promise. The website delivers on it. If there's a disconnect, you lose the visitor instantly.</p>
+
+    <div class="highlight-box" style="margin-top:1rem;">
+      <strong>The golden rule:</strong> Ad creative, landing page, and checkout must all tell the same story. Inconsistency between what the ad promises and what the page delivers is the single biggest ROAS killer.
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>Why CRO Unlocks Ad Profitability</h3>
+    <div class="grid-2" style="margin-top:0.5rem;">
+      <div style="padding:1.2rem; background:#ECFDF5; border-radius:12px;">
+        <strong>Before CRO</strong>
+        <p style="font-size:0.85rem; margin-top:0.3rem;">1,000 visitors &times; 1.5% CVR = 15 orders<br>$50 AOV = $750 revenue<br>$500 ad spend = 1.5x ROAS</p>
+      </div>
+      <div style="padding:1.2rem; background:#ECFDF5; border-radius:12px; border:2px solid #34D399;">
+        <strong style="color:#059669;">After CRO</strong>
+        <p style="font-size:0.85rem; margin-top:0.3rem;">1,000 visitors &times; 3% CVR = 30 orders<br>$60 AOV (bundles) = $1,800 revenue<br>$500 ad spend = <strong>3.6x ROAS</strong></p>
+      </div>
+    </div>
+    <p style="margin-top:1rem;">Same traffic, same ad spend. CRO doubled the conversion rate and AOV improvements added another 40%. The result is a 2.4x improvement in ROAS without touching a single ad.</p>
+  </div>
+
+  <div class="card">
+    <h3>Matching Awareness Stages to Traffic Sources</h3>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Traffic Source</th>
+            <th>Awareness Level</th>
+            <th>Landing Page Strategy</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Cold Meta prospecting ads</td>
+            <td>Stage 1&ndash;2</td>
+            <td>Advertorial or listicle &rarr; warm them up before PDP</td>
+          </tr>
+          <tr>
+            <td>Meta retargeting ads</td>
+            <td>Stage 3&ndash;4</td>
+            <td>Direct to PDP with social proof and urgency</td>
+          </tr>
+          <tr>
+            <td>Google branded search</td>
+            <td>Stage 4</td>
+            <td>Direct to PDP &mdash; they already know you</td>
+          </tr>
+          <tr>
+            <td>Google non-branded search</td>
+            <td>Stage 2&ndash;3</td>
+            <td>Collection page or PDP with education angle</td>
+          </tr>
+          <tr>
+            <td>Email campaigns</td>
+            <td>Stage 4&ndash;5</td>
+            <td>Direct to offer page with exclusive incentive</td>
+          </tr>
+          <tr>
+            <td>Influencer / UGC links</td>
+            <td>Stage 2&ndash;3</td>
+            <td>Dedicated landing page matching the influencer's messaging</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>Ad-to-Page Congruence Checklist</h3>
+    <ul>
+      <li><strong>Visual congruence:</strong> Hero image on landing page should match or complement the ad creative. Same color palette, same aesthetic.</li>
+      <li><strong>Message congruence:</strong> Headline on landing page should echo the ad's promise. If the ad says "Fix your posture in 2 weeks," the page headline should reinforce that exact claim.</li>
+      <li><strong>Personality type match:</strong> If the ad targets Red types with urgency and status, the landing page can't switch to soft Green language. Stay in the same positioning field.</li>
+      <li><strong>Awareness stage match:</strong> Cold traffic ads should land on education pages (advertorials), not product pages. Product-aware retargeting should land on PDPs with urgency.</li>
+      <li><strong>Offer match:</strong> If the ad mentions a discount, the discount must be visible immediately on the landing page. No hunting, no confusion.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>The Advertorial Bridge</h3>
+    <p>For cold Meta traffic (Stage 1&ndash;2), sending directly to a PDP is usually inefficient. The advertorial sits between the ad and the product page, warming up the visitor:</p>
+
+    <div class="page-flow" style="margin-top:1rem;">
+      <div class="page-flow-step">Cold Ad</div>
+      <div class="page-flow-arrow">&rarr;</div>
+      <div class="page-flow-step active">Advertorial</div>
+      <div class="page-flow-arrow">&rarr;</div>
+      <div class="page-flow-step">PDP</div>
+      <div class="page-flow-arrow">&rarr;</div>
+      <div class="page-flow-step">Checkout</div>
+    </div>
+
+    <p style="margin-top:1rem;">The advertorial takes the visitor from Stage 1&ndash;2 to Stage 3&ndash;4 using storytelling (PAS or Hero's Journey), social proof, and education. By the time they reach the PDP, they're warm and ready to buy.</p>
+
+    <div class="highlight-box" style="margin-top:1rem;">
+      <strong>When to use an advertorial:</strong> When your ad audience is cold (doesn't know they have a problem or doesn't know your product exists), when average order value is above $50, or when the product requires explanation or trust-building.
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>Using CRO Data to Improve Ads</h3>
+    <ul>
+      <li><strong>Heatmaps reveal hooks:</strong> Where visitors spend the most time on your page tells you what messages resonate. Turn those into ad angles.</li>
+      <li><strong>Top FAQ questions = ad objections:</strong> Whatever your FAQ answers most, your ads should proactively address.</li>
+      <li><strong>Review language = ad copy:</strong> The exact words customers use in reviews are the most persuasive language for your ads.</li>
+      <li><strong>Best-performing PDP sections = ad creative direction:</strong> If the transformation section gets the most engagement, lead your ads with transformation messaging.</li>
+      <li><strong>Checkout drop-off data = trust gaps:</strong> If visitors abandon at shipping costs, your ads should mention "free shipping" upfront.</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SECTION 10: AUDIT CHECKLIST -->
+<!-- ============================================================ -->
+<div id="audit" class="section">
+  <div class="section-header">
+    <div class="section-number">10</div>
+    <h2 class="section-title">Quick CRO Audit Checklist</h2>
+  </div>
+
+  <div class="card">
+    <h3>Above the Fold</h3>
+    <ul class="checklist">
+      <li>Headline communicates what it is, who it's for, and why it matters in 3 seconds</li>
+      <li>Value proposition instantly clear without scrolling</li>
+      <li>Hero image shows product in use or the transformation</li>
+      <li>Clear primary CTA visible without scrolling</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>Trust &amp; Proof</h3>
+    <ul class="checklist">
+      <li>Reviews, social proof numbers, or trust badges visible early</li>
+      <li>At least one detailed testimonial with name, photo, and specific outcome</li>
+      <li>Payment method logos visible</li>
+      <li>Returns and guarantee policy clearly stated</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>Copy Quality</h3>
+    <ul class="checklist">
+      <li>Copy written for the customer, not the brand</li>
+      <li>Benefits leading over features</li>
+      <li>Language simple enough for a 5th-grade reading level</li>
+      <li>FURs (Fears, Uncertainties, Risks) addressed directly</li>
+      <li>Personality type match is correct</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>UX &amp; Flow</h3>
+    <ul class="checklist">
+      <li>Page layout harmonious and instantly navigable</li>
+      <li>CTAs consistent in color, shape, and size throughout</li>
+      <li>Checkout progress visible</li>
+      <li>All costs communicated before final checkout step</li>
+      <li>Coupon code field hidden unless a code is active</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>Pricing</h3>
+    <ul class="checklist">
+      <li>Visible anchor price (crossed-out original)</li>
+      <li>Prices formatted without trailing zeros ($89 not $89.00)</li>
+      <li>Bundles structured in 3 tiers with middle pre-selected</li>
+      <li>Price sandwich used for subscriptions</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>Ad &harr; CRO Alignment</h3>
+    <ul class="checklist">
+      <li>Landing page headline echoes ad promise</li>
+      <li>Visual style consistent between ad creative and page</li>
+      <li>Personality type stays consistent from ad to page</li>
+      <li>Awareness stage matched to traffic source</li>
+      <li>Advertorial used for cold traffic when needed</li>
+      <li>Offer visible immediately on landing page</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SECTION 11: DESIGN TEAM GUIDELINES -->
+<!-- ============================================================ -->
+<div id="design-team" class="section">
+  <div class="section-header">
+    <div class="section-number">11</div>
+    <h2 class="section-title">Design Team Guidelines</h2>
+  </div>
+
+  <div class="card">
+    <h3>Mobile Above-the-Fold Dimensions</h3>
+    <p>The "above the fold" on mobile is the visible area before any scrolling. Your hero section must communicate value, show the product, and present a CTA within this space.</p>
+
+    <div class="table-wrap" style="margin-top:1rem;">
+      <table>
+        <thead>
+          <tr>
+            <th>Device</th>
+            <th>Viewport Width</th>
+            <th>Above-the-Fold Height</th>
+            <th>Notes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>iPhone SE / small</td>
+            <td>375px</td>
+            <td>~550px</td>
+            <td>Tightest constraint &mdash; design for this first</td>
+          </tr>
+          <tr>
+            <td>iPhone 14 / 15</td>
+            <td>390px</td>
+            <td>~660px</td>
+            <td>Most common iOS device class</td>
+          </tr>
+          <tr>
+            <td>iPhone 14 Pro Max / 15 Plus</td>
+            <td>430px</td>
+            <td>~740px</td>
+            <td>Larger phones give more breathing room</td>
+          </tr>
+          <tr>
+            <td>Android mid-range</td>
+            <td>360&ndash;412px</td>
+            <td>~600&ndash;700px</td>
+            <td>Wide variance &mdash; test on Samsung Galaxy</td>
+          </tr>
+          <tr>
+            <td>Desktop</td>
+            <td>1280&ndash;1440px</td>
+            <td>~700&ndash;800px</td>
+            <td>Design for 1440px wide, test at 1280px</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="highlight-box warning" style="margin-top:1rem;">
+      <strong>Design rule:</strong> Browser chrome (address bar, nav) eats ~100&ndash;130px on mobile. Your "safe zone" for must-see content on iPhone 14 is roughly <strong>390 &times; 660px</strong>. Always test real devices, not just browser resize.
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>What Must Be Above the Fold (Mobile)</h3>
+    <div class="step-block">
+      <div class="step-number">1</div>
+      <div>
+        <h4 style="margin-top:0;">Headline + Subheadline</h4>
+        <p>The headline must communicate what you sell, who it's for, and why they should care. Budget roughly 80&ndash;120px for headline and sub.</p>
+      </div>
+    </div>
+    <div class="step-block">
+      <div class="step-number">2</div>
+      <div>
+        <h4 style="margin-top:0;">Hero Image or Video</h4>
+        <p>Lifestyle shot showing product in use. Recommended hero image height on mobile: 300&ndash;400px. Don't make it so tall that CTA gets pushed below fold.</p>
+      </div>
+    </div>
+    <div class="step-block">
+      <div class="step-number">3</div>
+      <div>
+        <h4 style="margin-top:0;">Primary CTA</h4>
+        <p>Must be fully visible without scrolling. On mobile this usually means overlaying or placing CTA directly below the hero image. Full-width button preferred on mobile.</p>
+      </div>
+    </div>
+    <div class="step-block">
+      <div class="step-number amber">4</div>
+      <div>
+        <h4 style="margin-top:0;">Trust Signal (Optional but Recommended)</h4>
+        <p>A single line like "Trusted by 10,000+ customers" or a star rating. Even a small trust element above the fold increases scroll depth.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>Typography &amp; Readability Rules</h3>
+    <div class="grid-2" style="margin-top:0.5rem;">
+      <div>
+        <h4>Font Sizes</h4>
+        <ul>
+          <li><strong>Body text:</strong> 16px minimum on mobile (never 14px or smaller)</li>
+          <li><strong>H1 (hero):</strong> 28&ndash;36px mobile, 40&ndash;56px desktop</li>
+          <li><strong>H2 (section):</strong> 22&ndash;28px mobile, 32&ndash;40px desktop</li>
+          <li><strong>H3 (card):</strong> 18&ndash;22px mobile, 20&ndash;24px desktop</li>
+          <li><strong>Captions/labels:</strong> 12&ndash;14px, use sparingly</li>
+          <li><strong>CTA buttons:</strong> 16&ndash;18px, bold weight</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Line Length &amp; Spacing</h4>
+        <ul>
+          <li><strong>Max line length:</strong> 65&ndash;75 characters per line (including spaces)</li>
+          <li><strong>Line height:</strong> 1.5&ndash;1.7 for body copy</li>
+          <li><strong>Paragraph spacing:</strong> 1rem&ndash;1.5rem between paragraphs</li>
+          <li><strong>Letter spacing:</strong> 0 for body, 0.03&ndash;0.05em for uppercase labels</li>
+          <li><strong>Max 2 font families:</strong> One for headings, one for body</li>
+          <li><strong>Contrast ratio:</strong> 4.5:1 minimum for body text (WCAG AA)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>CTA Button Specifications</h3>
+    <ul>
+      <li><strong>Min height:</strong> 48px on mobile (Apple &amp; Google touch target guidelines), 44px on desktop</li>
+      <li><strong>Min width:</strong> Full-width on mobile (100% of container), min 200px on desktop</li>
+      <li><strong>Padding:</strong> 14&ndash;18px vertical, 24&ndash;32px horizontal</li>
+      <li><strong>Border radius:</strong> 8&ndash;12px for modern feel, or match brand style</li>
+      <li><strong>Box shadow:</strong> Always add subtle shadow to lift CTA off the page (figure/ground law)</li>
+      <li><strong>One CTA color everywhere:</strong> Same color, same border radius, same shadow on every page &mdash; homepage, PDP, collection, cart, checkout</li>
+      <li><strong>Contrast:</strong> CTA must be the highest-contrast element on the page. If your page is white/light, use a bold dark or saturated button color</li>
+    </ul>
+
+    <div class="vs-container" style="margin-top:1rem;">
+      <div class="vs-box wrong">
+        <h4 style="color:#DC2626; margin-top:0;">Don't</h4>
+        <ul style="font-size:0.85rem;">
+          <li>Blue CTA on homepage, green on PDP, red in cart</li>
+          <li>Ghost/outline buttons as primary CTA</li>
+          <li>CTA that blends with the page background</li>
+          <li>Multiple competing CTA styles on one page</li>
+        </ul>
+      </div>
+      <div class="vs-divider">vs</div>
+      <div class="vs-box right">
+        <h4 style="color:#059669; margin-top:0;">Do</h4>
+        <ul style="font-size:0.85rem;">
+          <li>One bold CTA color site-wide</li>
+          <li>Solid filled buttons with box shadow</li>
+          <li>High contrast against page background</li>
+          <li>Consistent sizing and corner radius</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>Image &amp; Asset Requirements</h3>
+    <div class="grid-2" style="margin-top:0.5rem;">
+      <div style="padding:1rem; background:var(--gray-100); border-radius:10px;">
+        <strong>Hero Images</strong>
+        <ul style="font-size:0.85rem; margin-top:0.3rem;">
+          <li>Desktop: 1440 &times; 600&ndash;800px (2x for retina: 2880px wide)</li>
+          <li>Mobile: 750 &times; 800&ndash;1000px (2x for retina)</li>
+          <li>Format: WebP with JPEG fallback</li>
+          <li>File size: under 200KB compressed</li>
+          <li>Always include alt text</li>
+        </ul>
+      </div>
+      <div style="padding:1rem; background:var(--gray-100); border-radius:10px;">
+        <strong>Product Images</strong>
+        <ul style="font-size:0.85rem; margin-top:0.3rem;">
+          <li>Minimum: 1000 &times; 1000px (Shopify zoom requirement)</li>
+          <li>Recommended: 2048 &times; 2048px square</li>
+          <li>Consistent aspect ratio across all products</li>
+          <li>First image: lifestyle. Second: product-only. Third: in-use. Fourth: detail.</li>
+          <li>Background: lifestyle or clean neutral (not pure white)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>Spacing &amp; Layout System</h3>
+    <ul>
+      <li><strong>Use an 8px grid:</strong> All spacing values should be multiples of 8 (8, 16, 24, 32, 48, 64, 80, 96). Creates visual rhythm and consistency.</li>
+      <li><strong>Section padding:</strong> 64&ndash;96px vertical on desktop, 48&ndash;64px on mobile</li>
+      <li><strong>Card padding:</strong> 24&ndash;32px on desktop, 16&ndash;24px on mobile</li>
+      <li><strong>Content max-width:</strong> 1200&ndash;1440px for main container. Center with auto margins.</li>
+      <li><strong>White space is structural:</strong> It signals where one group ends and another begins. It is not wasted space &mdash; it prevents cognitive overload.</li>
+      <li><strong>Alternating section backgrounds:</strong> Use subtle background color changes between sections to create visual separation (Gestalt unity/closure law).</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>Mobile-Specific Design Rules</h3>
+    <ul>
+      <li><strong>Touch targets:</strong> All tappable elements minimum 48 &times; 48px with 8px gap between targets</li>
+      <li><strong>No hover-only interactions:</strong> Everything must work with tap. Hover tooltips need tap alternatives.</li>
+      <li><strong>Sticky add-to-cart bar:</strong> 56&ndash;64px tall, fixed to bottom of viewport, appears after main CTA scrolls out of view</li>
+      <li><strong>Thumb zone:</strong> Primary actions (CTA, navigation) should be in the bottom 40% of the screen where thumbs reach easily</li>
+      <li><strong>Image carousels:</strong> Use swipe indicators (dots). Limit to 5&ndash;7 images max. Lazy load after first 2.</li>
+      <li><strong>Accordions over tabs:</strong> On mobile, vertical accordions for FAQs, product details, and shipping info are easier to use than horizontal tabs</li>
+      <li><strong>Full-width buttons:</strong> All primary CTAs should be full-width (100%) on mobile. Never side-by-side CTA buttons on mobile.</li>
+      <li><strong>No horizontal scroll:</strong> Nothing on the page should require horizontal scrolling except product image carousels and comparison tables</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>Color &amp; Contrast Checklist</h3>
+    <ul>
+      <li><strong>Primary brand color:</strong> Used for CTAs, links, active states. Must have 4.5:1 contrast against white.</li>
+      <li><strong>Success state:</strong> Green (#10B981 or similar) for confirmations, checkmarks, positive feedback</li>
+      <li><strong>Error state:</strong> Red (#EF4444 or similar) for form errors, warnings, out-of-stock</li>
+      <li><strong>Sale/discount:</strong> Red or orange for crossed-out prices and sale badges (pattern recognition)</li>
+      <li><strong>Neutral palette:</strong> 4&ndash;5 grays from near-black to near-white for text hierarchy and backgrounds</li>
+      <li><strong>Never use color alone:</strong> Pair color with icons, text, or shape changes for accessibility</li>
+    </ul>
+  </div>
+</div>
+
+</div><!-- /container -->
+
+<!-- ===== FOOTER ===== -->
+<div class="footer">
+  <p><strong>Brand Builders Academy</strong> &mdash; CRO &amp; High-Converting Websites System</p>
+  <p style="margin-top:0.5rem;">Psychology-driven conversion optimization for ecommerce brands</p>
+  <p style="margin-top:1rem; font-size:0.8rem;">
+    <a href="index.html" style="color:var(--gray-400);">Meta Ads Framework</a> &nbsp;&bull;&nbsp;
+    <a href="creative-strategy.html" style="color:var(--gray-400);">Creative Strategy System</a>
+  </p>
+</div>
+
+<!-- ===== NAV TRACKING JS ===== -->
+<script>
+  const sections = document.querySelectorAll('.section');
+  const tocLinks = document.querySelectorAll('.toc-link');
+
+  function updateActiveNav() {
+    let current = '';
+    sections.forEach(section => {
+      if (section.getBoundingClientRect().top <= 150) {
+        current = section.id;
+      }
+    });
+    tocLinks.forEach(link => {
+      link.classList.remove('active');
+      if (link.getAttribute('href') === '#' + current) {
+        link.classList.add('active');
+      }
+    });
+  }
+  window.addEventListener('scroll', updateActiveNav, { passive: true });
+  updateActiveNav();
+</script>
+
+</body>
+</html>
