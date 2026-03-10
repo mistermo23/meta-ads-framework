@@ -208,22 +208,9 @@
     margin: 1rem 0;
     max-width: 75ch;
   }
-  /* Text readability — 75 characters per line max (excludes grids & tables) */
-  .card > p,
-  .card > h3 + p,
-  .card > ul,
-  .card > ol,
-  .card > h3,
-  .card > h4,
-  .step-content,
-  .step-content p,
-  .step-content ul,
-  .step-content ol,
-  .timeline-item p,
-  .timeline-item ul,
-  .decision-node p,
-  .decision-node ul,
-  .checklist {
+  /* Text readability — 75 chars per line max everywhere.
+     Grids & table cells naturally constrain children, so this is a no-op there. */
+  p, li, ul, ol {
     max-width: 75ch;
   }
   .highlight-box.warning {
